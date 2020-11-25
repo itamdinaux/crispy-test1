@@ -1,8 +1,3 @@
-/*
-- var 
-- base
-*/
-
 /* var */
 :root {
   --little: 480px;
@@ -12,15 +7,22 @@
 }
 
 /* base */
-
 .container {
   margin: 0 auto;
 }
+.flex,
+.contentSide {
+  display: flex;
+}
+.flex-space {
+  justify-content: space-between;
+}
+
 .fullWidth {
   width: 100%;
 }
-.content-side > .sidebar,
-.content-side > .content {
+.contentSide > .sideBar,
+.contentSide > .contentMain {
   width: 100%;
   padding: 0px 10px;
   margin-bottom: 30px;
@@ -38,13 +40,16 @@
   .container {
     width: var(--narrow);
   }
-  .content-side > .sidebar {
+  .contentSide > .sideBar,
+  .contentSide > .contentMain {
+    padding: 0px;
+  }
+  .contentSide > .sideBar {
     width: 33%;
     margin-bottom: 0px;
   }
-  .content-side > .content {
+  .contentSide > .contentMain {
     width: 67%;
-    padding-right: 50px;
     margin-bottom: 0px;
   }
 }

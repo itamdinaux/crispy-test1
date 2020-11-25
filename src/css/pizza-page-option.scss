@@ -1,0 +1,28 @@
+.pizzaOption {
+  .contentMain {
+    display: flex;
+    .bgPizza {
+      width: 50%;
+      height: 100%;
+    }
+    .contentPizza {
+      width: 50%;
+    }
+  }
+}
+
+/* little */
+@media screen and (min-width: 500px) {
+}
+
+/* narrow */
+@media screen and (min-width: 740px) {
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+}
+
+/* wide */
+@media screen and (min-width: 1200px) {
+}

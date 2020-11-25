@@ -16,6 +16,14 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           slug
           title
+          id
+        }
+      }
+      pizza: allContentfulPizza {
+        nodes {
+          slug
+          title
+          id
         }
       }
     }
@@ -82,6 +90,15 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/LegalPage.js`),
       context: {
         id: legal.id,
+      },
+    })
+  })
+  result.data.pizza.nodes.forEach(pizza => {
+    createPage({
+      path: `/pizza/${pizza.slug}`,
+      component: path.resolve(`./src/templates/PizzaPageOption.js`),
+      context: {
+        id: pizza.id,
       },
     })
   })
