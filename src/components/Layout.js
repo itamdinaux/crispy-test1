@@ -18,7 +18,12 @@ const Layout = ({ children, location }) => {
       <MainMenu />
       {local.length !== 0 ? <Adress /> : navigate("/")}
       <div className="flex">
-        <div className="mainContent">{children}</div>
+        {typeof window !== "undefined" ? (
+          <div className="mainContent">{children}</div>
+        ) : (
+          ""
+        )}
+
         {location.pathname === "/" ||
         location.pathname === "/order" ||
         location.pathname === "/validate" ? (
