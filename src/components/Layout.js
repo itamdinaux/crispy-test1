@@ -12,7 +12,7 @@ const Layout = ({ children, location }) => {
   return (
     <div>
       <MainMenu />
-      {!localStorage.adrs ? navigate("/") : <Adress />}
+      {localStorage.length !== 0 ? <Adress /> : navigate("/")}
       <div className="flex">
         <div className="mainContent">{children}</div>
         {location.pathname === "/" ||
