@@ -9,7 +9,10 @@ import Order from "../components/Order"
 import "../css/global.scss"
 
 const Layout = ({ children, location }) => {
-  const local = window.localStorage
+  let local = 0
+  if (typeof window !== "undefined") {
+    local = localStorage
+  }
   return (
     <div>
       <MainMenu />
