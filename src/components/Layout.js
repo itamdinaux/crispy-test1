@@ -8,8 +8,8 @@ import Order from "../components/Order"
 //css
 import "../css/global.scss"
 
-const Layout = ({ children, location, localStorage }) => {
-  const locale = localStorage.adrs 
+const Layout = ({ children, location }) => {
+  const locale = localStorage ? 1 : 0
   console.log(locale)
   return (
     <div>
