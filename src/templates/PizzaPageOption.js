@@ -6,17 +6,39 @@ import BackgroundImage from "gatsby-background-image"
 //css
 import "../css/pizza-page-option.scss"
 const PizzaPage = ({ data }) => {
-  const choiceTaille = [{ "1": data.c.prixRegular }, { "2": data.c.prixMaxi }]
+  //taille
+  const choiceTaille = [data.c.prixRegular, data.c.prixMaxi]
   const [taille, setTaille] = useState(0)
-  console.log(choiceTaille[taille - 1])
-
-  const [order, setOrder] = useState("")
-
+  //order
+  const [supp, setSupp] = useState("")
+  //reset
   const reset = () => {
-    setOrder(order => "")
+    setSupp(supp => "")
     setTaille(taille => 0)
   }
-
+  //result
+  let order = []
+  const result = (nom, tailleName, taillePrice, sup) => {
+    let supSum = 0
+    let supList = []
+    supp.map(item => {
+      supSum = supSum + item.price
+      supList.push(item.name)
+      return false
+    })
+    let total = taillePrice + supSum
+    order = [
+      {
+        nom: nom,
+        taille: tailleName,
+        prixBase: taillePrice,
+        supList: supList,
+        supSum: supSum,
+        total: total,
+      },
+    ]
+    console.log(order)
+  }
   return (
     <div className={`container pizzaOption `}>
       <div className="fullWidth return">Return</div>
@@ -27,9 +49,9 @@ const PizzaPage = ({ data }) => {
             <h1>{data.c.title}</h1>
             <p>{data.c.description.description}</p>
             <h3>Supplément sélectionné</h3>
-            {order ? (
+            {supp ? (
               <div>
-                {order.map((item, index) => {
+                {supp.map((item, index) => {
                   return (
                     <div key={index}>
                       {item.name}#{item.price}
@@ -40,7 +62,14 @@ const PizzaPage = ({ data }) => {
             ) : (
               <div>Aucun</div>
             )}
-            <h2>Taille </h2>
+            <h2>
+              Taille
+              {taille ? (
+                <button onClick={() => reset()}>Réinitialiser</button>
+              ) : (
+                ""
+              )}
+            </h2>
             <div className="taille">
               <button
                 onClick={() => setTaille(taille => 1)}
@@ -79,16 +108,16 @@ const PizzaPage = ({ data }) => {
                                   onClick={
                                     taille === 1
                                       ? () =>
-                                          setOrder(order => [
-                                            ...order,
+                                          setSupp(supp => [
+                                            ...supp,
                                             {
                                               name: item.title,
                                               price: item.type.prixRegular,
                                             },
                                           ])
                                       : () =>
-                                          setOrder(order => [
-                                            ...order,
+                                          setSupp(supp => [
+                                            ...supp,
                                             {
                                               name: item.title,
                                               price: item.type.prixMaxi,
@@ -112,8 +141,18 @@ const PizzaPage = ({ data }) => {
             )}
 
             <div className="action">
-              <button>Ajouter au panier</button>
-              <button onClick={() => reset()}>Réinitialiser</button>
+              <button
+                onClick={() =>
+                  result(
+                    data.c.title,
+                    taille === 1 ? "Regular" : "Maxi",
+                    choiceTaille[taille - 1],
+                    supp
+                  )
+                }
+              >
+                Ajouter au panier
+              </button>
             </div>
           </div>
         </div>
