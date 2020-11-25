@@ -1,0 +1,64 @@
+/*
+- var 
+- base
+*/
+
+/* var */
+:root {
+  --little: 480px;
+  --narrow: 720px;
+  --normal: 960px;
+  --wide: 1180px;
+}
+
+/* base */
+
+.container {
+  margin: 0 auto;
+}
+.fullWidth {
+  width: 100%;
+}
+.content-side > .sidebar,
+.content-side > .content {
+  width: 100%;
+  padding: 0px 10px;
+  margin-bottom: 30px;
+}
+
+/* little */
+@media screen and (min-width: 500px) {
+  .container {
+    width: var(--little);
+  }
+}
+
+/* narrow */
+@media screen and (min-width: 740px) {
+  .container {
+    width: var(--narrow);
+  }
+  .content-side > .sidebar {
+    width: 33%;
+    margin-bottom: 0px;
+  }
+  .content-side > .content {
+    width: 67%;
+    padding-right: 50px;
+    margin-bottom: 0px;
+  }
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+  .container {
+    width: var(--normal);
+  }
+}
+
+/* wide */
+@media screen and (min-width: 1200px) {
+  .container {
+    width: var(--wide);
+  }
+}

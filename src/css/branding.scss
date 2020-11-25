@@ -1,0 +1,32 @@
+.branding {
+  .logo {
+  }
+  .mainMenu {
+    flex-grow: 1;
+    margin: 0px 20px;
+    display: flex;
+    flex-direction: row;
+    li {
+      a {
+      }
+    }
+  }
+  .phone {
+  }
+}
+
+/* little */
+@media screen and (min-width: 500px) {
+}
+
+/* narrow */
+@media screen and (min-width: 740px) {
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+}
+
+/* wide */
+@media screen and (min-width: 1200px) {
+}

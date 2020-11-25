@@ -3,7 +3,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
-
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -11,6 +10,8 @@ require("dotenv").config({
 module.exports = {
   /* Your site config here */
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-layout`,
@@ -19,11 +20,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-stripe`,
+      resolve: `gatsby-source-contentful`,
       options: {
-        objects: ["Price", "PaymentIntent", "Order", "OrderReturn"],
-        secretKey: process.env.STRIPE_SECRET_KEY,
-        downloadFiles: true,
+        spaceId: process.env.SPACE_ID,
+        accessToken: process.env.ACCESS_TOKEN,
       },
     },
   ],

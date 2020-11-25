@@ -1,10 +1,9 @@
 import React from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
-
 //data
 const getData = graphql`
   {
-    c: allContentfulTypeProduct(sort: { fields: order, order: ASC }) {
+    c: allContentfulLegalInfo(sort: { fields: contentful_id, order: ASC }) {
       nodes {
         slug
         title
@@ -12,10 +11,10 @@ const getData = graphql`
     }
   }
 `
-const MainMenu = () => {
+const MenuLegal = () => {
   const data = useStaticQuery(getData)
   return (
-    <ul className="mainMenu">
+    <ul className="legalMenu">
       {data.c.nodes.map((item, index) => {
         return (
           <li key={index}>
@@ -27,4 +26,4 @@ const MainMenu = () => {
   )
 }
 
-export default MainMenu
+export default MenuLegal
