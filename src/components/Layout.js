@@ -9,12 +9,10 @@ import Order from "../components/Order"
 import "../css/global.scss"
 
 const Layout = ({ children, location }) => {
-  const locale = localStorage ? 1 : 0
-  console.log(locale)
   return (
     <div>
       <MainMenu />
-      {locale ? <Adress /> : navigate("/")}
+      {!localStorage.adrs ? navigate("/") : <Adress />}
       <div className="flex">
         <div className="mainContent">{children}</div>
         {location.pathname === "/" ||
