@@ -2,6 +2,10 @@ import React from "react"
 import { navigate } from "gatsby"
 
 const Adresse = () => {
+  let local = 0
+  if (typeof window !== "undefined") {
+    local = localStorage.adrs
+  }
   const reset = () => {
   localStorage.clear()
   navigate("/")
@@ -9,7 +13,7 @@ const Adresse = () => {
   return (
     <div>
       <hr />
-      Votre adresse : {localStorage.adrs}
+      Votre adresse : {local}
       <button onClick={reset}>Ce n'est pas mon adresse</button>
       <hr />
     </div>
