@@ -1,0 +1,15 @@
+.flex {
+  display: flex;
+  .mainContent {
+    width: 70%;
+  }
+  .sidebar {
+    width: 30%;
+  }
+}
+.table-order {
+  span {
+    display: block;
+    font-size: 0.75em;
+  }
+}
