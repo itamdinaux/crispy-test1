@@ -1,11 +1,17 @@
-import React, { useState } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 
 //components
+import Panier from "../components/Panier"
+//context
+import { Context } from "../context/Context"
 //css
 import "../css/pizza-page-option.scss"
 const PizzaPage = ({ data }) => {
+  //context
+  const context = useContext(Context)
+
   //taille
   const choiceTaille = [data.c.prixRegular, data.c.prixMaxi]
   const [taille, setTaille] = useState(0)
@@ -17,28 +23,29 @@ const PizzaPage = ({ data }) => {
     setTaille(taille => 0)
   }
   //result
-  let order = []
+  let total = 0
   const result = (nom, tailleName, taillePrice, sup) => {
     let supSum = 0
     let supList = []
-    supp.map(item => {
-      supSum = supSum + item.price
-      supList.push(item.name)
-      return false
-    })
-    let total = taillePrice + supSum
-    order = [
-      {
-        nom: nom,
-        taille: tailleName,
-        prixBase: taillePrice,
-        supList: supList,
-        supSum: supSum,
-        total: total,
-      },
-    ]
-    console.log(order)
+    if (sup) {
+      sup.map(item => {
+        supSum = supSum + item.price
+        supList.push(item.name)
+        return false
+      })
+    } else {
+      supList.push("aucun")
+    }
+    total = taillePrice + supSum
+    context.changePanier(nom, tailleName, taillePrice, supList, supSum, total)
   }
+
+  useEffect(() => {
+    if (total) {
+      console.log(context.panier)
+    }
+  }, [context, total])
+
   return (
     <div className={`container pizzaOption `}>
       <div className="fullWidth return">Return</div>
@@ -147,7 +154,7 @@ const PizzaPage = ({ data }) => {
                     data.c.title,
                     taille === 1 ? "Regular" : "Maxi",
                     choiceTaille[taille - 1],
-                    supp
+                    supp ? supp : 0
                   )
                 }
               >
@@ -156,7 +163,10 @@ const PizzaPage = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="sideBar">sidebar</div>
+        <div className="sideBar">
+          sidebar
+          <Panier />
+        </div>
       </div>
     </div>
   )
