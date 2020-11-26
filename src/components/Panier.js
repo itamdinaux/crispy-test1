@@ -11,7 +11,7 @@ const Panier = () => {
   }, [context, commande])
 
   return (
-    <Context.Provider value={context.panier}>
+    <Context.Provider value={context}>
       <div>
         <h2>Ma commande</h2>
         <table className="panier">
