@@ -46,7 +46,7 @@ const Panier = () => {
                 return (
                   <tr key={index}>
                     <td>
-                      {item.nom} {item.taille}
+                      {item.nom} {item.tailleName}
                       <div
                         className={`supp ${item.supList.map(item => {
                           if (item === "0") {

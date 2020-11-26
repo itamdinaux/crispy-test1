@@ -5,7 +5,6 @@ export const Context = React.createContext()
 const Provider = props => {
   let [panier, setPanier] = useState([])
   let [service, setService] = useState("")
-  console.log(panier)
   // objToCheck
   const objToCheck = panier[panier.length - 1]
 
