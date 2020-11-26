@@ -9,7 +9,6 @@ const Provider = props => {
     <Context.Provider
       value={{
         panier,
-        
         changePanier: (nom, tailleName, taillePrice, supList, supSum, total) =>
           setPanier(
             (panier = [

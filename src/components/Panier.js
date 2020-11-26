@@ -8,40 +8,33 @@ const Panier = () => {
 
   useEffect(() => {
     setCommande(commande => context)
+    console.log(context)
   }, [context, commande])
 
   return (
-    <Context.Provider value={context}>
-      <div>
-        <h2>Ma commande</h2>
-        <table className="panier">
-          <tbody>
-            {context.panier.length ? (
-              commande.panier.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td key={index}>
-                      {item.nom} {item.taille}
-                      <div>
-                        Supp. :{" "}
-                        {item.supList.map((item, index) => {
-                          return <span key={index}>{item}</span>
-                        })}
-                      </div>
-                    </td>
-                    <td>| {item.total} €</td>
-                  </tr>
-                )
-              })
-            ) : (
-              <tr>
-                <td>Panier vide</td>
+    <div>
+      <h2>Ma commande</h2>
+      <table className="panier">
+        <tbody>
+          {commande.panier.map((item, index) => {
+            return (
+              <tr key={index}>
+                <td key={index}>
+                  {item.nom} {item.taille}
+                  <div>
+                    Supp. :{" "}
+                    {item.supList.map((item, index) => {
+                      return <span key={index}>{item}</span>
+                    })}
+                  </div>
+                </td>
+                <td>| {item.total} €</td>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </Context.Provider>
+            )
+          })}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
