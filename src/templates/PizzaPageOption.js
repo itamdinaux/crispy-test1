@@ -149,6 +149,7 @@ const PizzaPage = ({ data }) => {
 
             <div className="action">
               <button
+                disabled={taille ? false : true}
                 onClick={() =>
                   result(
                     data.c.title,
