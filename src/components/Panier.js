@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from "react"
 //context
 import { Context } from "../context/Context"
+//css
+import "../css/panier.scss"
 const Panier = () => {
   const context = useContext(Context)
 
@@ -17,6 +19,21 @@ const Panier = () => {
     })
   }, [context, commande])
 
+  const addItem = (index, quantity, basePrice, supSum) => {
+    context.addPanier(index, quantity, basePrice, supSum)
+  }
+  const removeItem = (index, quantity, basePrice, supSum) => {
+    if (quantity === 1) {
+      context.deletePanier(index)
+    } else {
+      context.removePanier(index, quantity, basePrice, supSum)
+    }
+  }
+  const deleteItem = (index) => {
+      context.deletePanier(index)
+    
+  }
+
   return (
     <div>
       <h2>Ma commande</h2>
@@ -28,13 +45,56 @@ const Panier = () => {
               commande.panier.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td key={index}>
+                    <td>
                       {item.nom} {item.taille}
-                      <div>
+                      <div
+                        className={`supp ${item.supList.map(item => {
+                          if (item === "0") {
+                            return "none"
+                          }
+                          return false
+                        })}`}
+                      >
                         Supp. :
                         {item.supList.map((item, index) => {
                           return <span key={index}>{item}</span>
                         })}
+                      </div>
+                      <div className="quantity">
+                        <button
+                          onClick={() =>
+                            removeItem(
+                              index,
+                              item.quantity,
+                              item.basePrice,
+                              item.supSum
+                            )
+                          }
+                        >
+                          -
+                        </button>
+                        {item.quantity}
+                        <button
+                          onClick={() =>
+                            addItem(
+                              index,
+                              item.quantity,
+                              item.basePrice,
+                              item.supSum
+                            )
+                          }
+                        >
+                          +
+                        </button>
+                        <button
+                          onClick={() =>
+                            deleteItem(
+                              index
+                            )
+                          }
+                        >
+                          x
+                        </button>
                       </div>
                     </td>
                     <td>{item.total} €</td>

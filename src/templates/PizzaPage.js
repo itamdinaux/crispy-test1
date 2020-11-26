@@ -4,7 +4,7 @@ import BackgroundImage from "gatsby-background-image"
 //components
 import Panier from "../components/Panier"
 //css
-import "../css/pizza-page.scss"
+import "../css/productPage.scss"
 //data
 const getData = graphql`
   {
@@ -34,7 +34,7 @@ const PizzaPage = () => {
 
   return (
     <div
-      className={`container pizza ${trad ? "traditionnelle" : ""} ${
+      className={`container product ${trad ? "traditionnelle" : ""} ${
         spec ? "speciale" : ""
       } ${blc ? "blanche" : ""}`}
     >
@@ -50,8 +50,8 @@ const PizzaPage = () => {
         <div className="contentMain">
           {data.c.nodes.map((item, index) => {
             return (
-              <div key={index} className={`pizzaOne ${item.catgory}`}>
-                <BackgroundImage fluid={item.image.fluid} className="bgPizza" />
+              <div key={index} className={`productOne ${item.catgory}`}>
+                <BackgroundImage fluid={item.image.fluid} className="bgProduct" />
                 <h2>{item.title}</h2>
                 <p>{item.description.description}</p>
                 <div>

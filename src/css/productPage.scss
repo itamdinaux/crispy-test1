@@ -1,17 +1,18 @@
-.pizza {
+.product {
   .contentMain {
     display: flex;
     flex-wrap: wrap;
-    .pizzaOne {
+    .productOne {
       width: 50%;
       flex-direction: column;
       position: relative;
-      .bgPizza {
+      .bgProduct {
         width: 300px !important;
         height: 300px !important;
       }
 
-      a {
+      a,
+      button {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -26,7 +27,7 @@
 .traditionnelle,
 .speciale,
 .blanche {
-  .pizzaOne {
+  .productOne {
     display: none;
   }
 }
@@ -44,9 +45,7 @@
   .blanche {
     display: flex;
   }
-}
-
-/* little */
+} /* little */
 @media screen and (min-width: 500px) {
 }
 

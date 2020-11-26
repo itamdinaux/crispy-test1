@@ -8,7 +8,7 @@ import "../css/productPage.scss"
 //data
 const getData = graphql`
   {
-    c: allContentfulSalade(sort: { fields: order, order: ASC }) {
+    c: allContentfulPain(sort: { fields: order, order: ASC }) {
       nodes {
         title
         slug
@@ -25,10 +25,10 @@ const getData = graphql`
     }
   }
 `
-const SaladePage = () => {
+const PainPage = () => {
   const data = useStaticQuery(getData)
 
   return <ProductPage data={data} />
 }
 
-export default SaladePage
+export default PainPage

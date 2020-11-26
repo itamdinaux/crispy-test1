@@ -26,15 +26,23 @@ exports.createPages = async ({ graphql, actions }) => {
           id
         }
       }
+      boisson: allContentfulBoisson {
+        nodes {
+          slug
+          title
+          id
+        }
+      }
     }
   `)
   result.data.page.nodes.forEach(page => {
-    if (page.slug === "entree") {
+    if (page.slug === "pain") {
       createPage({
         path: `/${page.slug}`,
-        component: path.resolve(`./src/templates/EntreePage.js`),
+        component: path.resolve(`./src/templates/PainPage.js`),
         context: {
           id: page.id,
+          type: "productPage",
         },
       })
     }
@@ -44,6 +52,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/PizzaPage.js`),
         context: {
           id: page.id,
+          type: "productPage",
         },
       })
     }
@@ -53,6 +62,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/PatePage.js`),
         context: {
           id: page.id,
+          type: "productPage",
         },
       })
     }
@@ -62,6 +72,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/SaladePage.js`),
         context: {
           id: page.id,
+          type: "productPage",
         },
       })
     }
@@ -71,6 +82,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/BoissonPage.js`),
         context: {
           id: page.id,
+          type: "productPage",
         },
       })
     }
@@ -80,6 +92,7 @@ exports.createPages = async ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/DessertPage.js`),
         context: {
           id: page.id,
+          type: "productPage",
         },
       })
     }
@@ -90,6 +103,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/LegalPage.js`),
       context: {
         id: legal.id,
+        type: "legalPage",
       },
     })
   })
@@ -99,6 +113,17 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/PizzaPageOption.js`),
       context: {
         id: pizza.id,
+        type: "pizzaOption",
+      },
+    })
+  })
+  result.data.boisson.nodes.forEach(boisson => {
+    createPage({
+      path: `/boisson/${boisson.slug}`,
+      component: path.resolve(`./src/templates/BoissonPageOption.js`),
+      context: {
+        id: boisson.id,
+        type: "boissonOption",
       },
     })
   })

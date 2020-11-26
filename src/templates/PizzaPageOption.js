@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
+import { navigate } from "gatsby"
+
 
 //components
 import Panier from "../components/Panier"
@@ -24,7 +26,7 @@ const PizzaPage = ({ data }) => {
   }
   //result
   let total = 0
-  const result = (nom, tailleName, taillePrice, sup) => {
+  const result = (nom, tailleName, basePrice, sup, quantity) => {
     let supSum = 0
     let supList = []
     if (sup) {
@@ -36,8 +38,10 @@ const PizzaPage = ({ data }) => {
     } else {
       supList.push("aucun")
     }
-    total = taillePrice + supSum
-    context.changePanier(nom, tailleName, taillePrice, supList, supSum, total)
+    total = basePrice + supSum
+    
+    context.changePanier(nom, tailleName, basePrice, supList, supSum, total, quantity)
+    navigate("/pizza")
   }
 
   useEffect(() => {
@@ -48,7 +52,7 @@ const PizzaPage = ({ data }) => {
 
   return (
     <div className={`container pizzaOption `}>
-      <div className="fullWidth return">Return</div>
+      <div className="fullWidth return"><Link to="/pizza">Retour</Link></div>
       <div className="contentSide">
         <div className="contentMain">
           <BackgroundImage fluid={data.c.image.fluid} className="bgPizza" />
@@ -155,7 +159,8 @@ const PizzaPage = ({ data }) => {
                     data.c.title,
                     taille === 1 ? "Regular" : "Maxi",
                     choiceTaille[taille - 1],
-                    supp ? supp : 0
+                    supp ? supp : 0, 
+                    1
                   )
                 }
               >
