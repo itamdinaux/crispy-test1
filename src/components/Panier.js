@@ -8,7 +8,6 @@ const Panier = () => {
 
   useEffect(() => {
     setCommande(commande => context)
-    console.log(commande.panier)
   }, [context, commande])
 
   return (
@@ -16,7 +15,7 @@ const Panier = () => {
       <h2>Ma commande</h2>
       <table className="panier">
         <tbody>
-          {commande.panier.length !== 0 ? (
+          {commande.panierState ? (
             commande.panier.map((item, index) => {
               return (
                 <tr key={index}>
