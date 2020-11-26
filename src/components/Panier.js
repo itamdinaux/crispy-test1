@@ -50,13 +50,17 @@ const Panier = () => {
             ""
           )}
         </tbody>
-        {commande.panier.length !== 0 ? (
-          <tfoot>
-            <tr>
-              <td>Total</td>
-              <td>{calculTotal} €</td>
-            </tr>
-          </tfoot>
+        {typeof window !== "undefined" ? (
+          commande.panier.length !== 0 ? (
+            <tfoot>
+              <tr>
+                <td>Total</td>
+                <td>{calculTotal} €</td>
+              </tr>
+            </tfoot>
+          ) : (
+            <></>
+          )
         ) : (
           <></>
         )}
