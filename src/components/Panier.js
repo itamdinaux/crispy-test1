@@ -16,22 +16,24 @@ const Panier = () => {
       <h2>Ma commande</h2>
       <table className="panier">
         <tbody>
-          {commande.panier.map((item, index) => {
-            return (
-              <tr key={index}>
-                <td key={index}>
-                  {item.nom} {item.taille}
-                  <div>
-                    Supp. :{" "}
-                    {item.supList.map((item, index) => {
-                      return <span key={index}>{item}</span>
-                    })}
-                  </div>
-                </td>
-                <td>| {item.total} €</td>
-              </tr>
-            )
-          })}
+          {typeof window !== "undefined"
+            ? commande.panier.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td key={index}>
+                      {item.nom} {item.taille}
+                      <div>
+                        Supp. :{" "}
+                        {item.supList.map((item, index) => {
+                          return <span key={index}>{item}</span>
+                        })}
+                      </div>
+                    </td>
+                    <td>| {item.total} €</td>
+                  </tr>
+                )
+              })
+            : ""}
         </tbody>
       </table>
     </div>
