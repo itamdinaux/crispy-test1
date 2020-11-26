@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { graphql, useStaticQuery, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 //components
+import Panier from "../components/Panier"
 //css
 import "../css/pizza-page.scss"
 //data
@@ -62,7 +63,7 @@ const PizzaPage = () => {
             )
           })}
         </div>
-        <div className="sideBar">sidebar</div>
+        <div className="sideBar"><Panier /></div>
       </div>
     </div>
   )
