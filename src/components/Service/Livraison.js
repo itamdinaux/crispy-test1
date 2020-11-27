@@ -1,8 +1,17 @@
 import React, { useState, useContext } from "react"
+import {graphql, useStaticQuery} from "gatsby"
 import { navigate } from "gatsby"
 //context
 import { Context } from "../../context/Context"
+//data
+const getData = graphql`
+{
+  c:contentfulConfig{
+    distanceLivraison
+  }
+}`
 const Livraison = () => {
+  const data = useStaticQuery(getData)
   const context = useContext(Context)
 
   const [check, setCheck] = useState(0)
@@ -31,8 +40,8 @@ const Livraison = () => {
       ) : (
         <>
           <p>
-            Nous ne livrons que dans un rayons de 5km. Vérifiez que vous êtes
-            élligible à la livraison.
+            Nous ne livrons que dans un rayons de {data.c.distanceLivraison /1000}km. 
+            Vérifiez que vous êtes élligible à la livraison.
           </p>
           <input />
           <button onClick={() => setCheck(check => 1)}>Check</button>

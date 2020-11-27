@@ -6,7 +6,7 @@ import "../css/panier.scss"
 const Panier = () => {
   const context = useContext(Context)
 
-  const [service, setService] = useState(context.service)
+  const [service, setService] = useState(0)
 
   const [commande, setCommande] = useState(context)
   const [calculTotal, setCalculTotal] = useState(0)

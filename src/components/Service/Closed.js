@@ -13,7 +13,7 @@ const Closed = () => {
  return (
   <div>
    <p>Nous sommes fermé. Mais vous pouvez quand même consulter notre menu. </p>
-   <button onClick={()=> nav(4)}>Aller au menu</button>
+   <button onClick={()=> nav(3)}>Aller au menu</button>
   </div>
  )
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
+import { OpenClose } from '../utils/openCheck.js';
 
 export const Context = React.createContext()
 
@@ -8,13 +9,21 @@ const getData = graphql`
   {
     c: contentfulInfo {
       ouverture
+      horaire {
+        day
+        hour {
+          debut
+          fin
+        }
+      }
     }
   }
 `
 
 const Provider = props => {
   const data = useStaticQuery(getData)
-  const [mode] = useState(data.c.ouverture)
+  const magOpen = data.c.ouverture ? OpenClose(data) : false
+  const [mode] = useState(magOpen)
   let [service, setService] = useState(0)
 
   let [panier, setPanier] = useState([])

@@ -32,6 +32,25 @@ const PizzaPage = () => {
   const [spec, setSpec] = useState(0)
   const [blc, setBlc] = useState(0)
 
+  const changeFiltre = filtre => {
+    if (filtre === "trad") {
+      setTrad(trad => 1)
+      setSpec(spec => 0)
+      setBlc(blc => 0)
+    } else if (filtre === "spec") {
+      setTrad(trad => 0)
+      setSpec(spec => 1)
+      setBlc(blc => 0)
+    } else if (filtre === "blc") {
+      setTrad(trad => 0)
+      setSpec(spec => 0)
+      setBlc(blc => 1)
+    } else {
+      setTrad(trad => 0)
+      setSpec(spec => 0)
+      setBlc(blc => 0)
+    }
+  }
   return (
     <div
       className={`container product ${trad ? "traditionnelle" : ""} ${
@@ -41,9 +60,25 @@ const PizzaPage = () => {
       <div className="fullWidth">
         Filtre :
         <div className="filtre">
-          <button onClick={() => setTrad(trad => !trad)} className={`active-${trad? "true":"false"}`}>Traditionnelle</button>
-          <button onClick={() => setSpec(spec => !spec)} className={`active-${spec? "true":"false"}`}>Spéciale</button>
-          <button onClick={() => setBlc(blc => !blc)} className={`active-${blc? "true":"false"}`}>Blanche</button>
+          <button
+            onClick={() => changeFiltre("trad")}
+            className={`active-${trad ? "true" : "false"}`}
+          >
+            Traditionnelle
+          </button>
+          <button
+            onClick={() => changeFiltre("spec")}
+            className={`active-${spec ? "true" : "false"}`}
+          >
+            Spéciale
+          </button>
+          <button
+            onClick={() => changeFiltre("blc")}
+            className={`active-${blc ? "true" : "false"}`}
+          >
+            Blanche
+          </button>
+          <button onClick={() => changeFiltre()}>Supprimer le fitre</button>
         </div>
       </div>
       <div className="contentSide">
@@ -51,7 +86,10 @@ const PizzaPage = () => {
           {data.c.nodes.map((item, index) => {
             return (
               <div key={index} className={`productOne ${item.catgory}`}>
-                <BackgroundImage fluid={item.image.fluid} className="bgProduct" />
+                <BackgroundImage
+                  fluid={item.image.fluid}
+                  className="bgProduct"
+                />
                 <h2>{item.title}</h2>
                 <p>{item.description.description}</p>
                 <div>
@@ -63,7 +101,9 @@ const PizzaPage = () => {
             )
           })}
         </div>
-        <div className="sideBar"><Panier /></div>
+        <div className="sideBar">
+          <Panier />
+        </div>
       </div>
     </div>
   )
