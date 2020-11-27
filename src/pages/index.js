@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 //component
 import Livraison from "../components/Service/Livraison"
 import Emporter from "../components/Service/Emporter"
@@ -10,9 +10,14 @@ import "../css/index.scss"
 
 const Index = () => {
   const context = useContext(Context)
-  let [mode] = useState(0)
-  typeof window !== "undefined" ?  [mode] = useState(context.mode) : false
-  
+  const [mode, setMode] = useState(0)
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setMode(mode => context.mode)
+    }
+  }, [context])
+
   const [service, setService] = useState(0)
   return (
     <div className="container">

@@ -14,7 +14,9 @@ import "../css/gird.scss"
 const Layout = ({ children, pageContext, location }) => {
   const context = useContext(Context)
   let service = ""
-  typeof window !== "undefined" ? (service = context.service) : false
+  if (typeof window !== "undefined") {
+    service = context.service
+  }
 
   const pageLayout = "home"
   if (location.pathname === "/") {
