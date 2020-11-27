@@ -6,10 +6,13 @@ import "../css/panier.scss"
 const Panier = () => {
   const context = useContext(Context)
 
+  const [service, setService] = useState(context.service)
+
   const [commande, setCommande] = useState(context)
   const [calculTotal, setCalculTotal] = useState(0)
 
   useEffect(() => {
+    setService(service => context.service)
     setCommande(commande => context)
     //calcul Total
     setCalculTotal(0)
@@ -36,7 +39,7 @@ const Panier = () => {
 
   return (
     <div>
-      <h2>Ma commande</h2>
+      <h2>Ma commande ({service ? service === 1 ? "Livraison" : service === 2 ?"Emporter" :"Magazin fermé": "non defini"})</h2>
 
       <table className="panier">
         <tbody>

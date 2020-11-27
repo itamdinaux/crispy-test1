@@ -1,10 +1,23 @@
 import React, { useState } from "react"
+import { graphql, useStaticQuery } from "gatsby"
 
 export const Context = React.createContext()
 
+//data
+const getData = graphql`
+  {
+    c: contentfulInfo {
+      ouverture
+    }
+  }
+`
+
 const Provider = props => {
+  const data = useStaticQuery(getData)
+  const [mode] = useState(data.c.ouverture)
+  let [service, setService] = useState(0)
+
   let [panier, setPanier] = useState([])
-  let [service, setService] = useState("")
   // objToCheck
   const objToCheck = panier[panier.length - 1]
 
@@ -44,6 +57,7 @@ const Provider = props => {
       value={{
         panier,
         service,
+        mode,
         changePanier: (
           nom,
           tailleName,
@@ -67,10 +81,13 @@ const Provider = props => {
               },
             ])
           ),
+          // livraison ou emporter
         changeService: type => setService(service => type),
+        
+        // delete element de panier
         deletePanier: index =>
           setPanier(panier => panier.filter((item, i) => i !== index)),
-
+        // ajout 1 element panier
         addPanier: (objIndex, objQuant, objPrice, objSup) =>
           setPanier(
             panier.map((item, index) =>
@@ -83,6 +100,7 @@ const Provider = props => {
                 : item
             )
           ),
+        //enleve 1 element panier
         removePanier: (objIndex, objQuant, objPrice, objSup) =>
           setPanier(
             panier.map((item, index) =>

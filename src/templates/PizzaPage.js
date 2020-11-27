@@ -41,9 +41,9 @@ const PizzaPage = () => {
       <div className="fullWidth">
         Filtre :
         <div className="filtre">
-          <button onClick={() => setTrad(trad => !trad)}>Traditionnelle</button>
-          <button onClick={() => setSpec(spec => !spec)}>Spéciale</button>
-          <button onClick={() => setBlc(blc => !blc)}>Blanche</button>
+          <button onClick={() => setTrad(trad => !trad)} className={`active-${trad? "true":"false"}`}>Traditionnelle</button>
+          <button onClick={() => setSpec(spec => !spec)} className={`active-${spec? "true":"false"}`}>Spéciale</button>
+          <button onClick={() => setBlc(blc => !blc)} className={`active-${blc? "true":"false"}`}>Blanche</button>
         </div>
       </div>
       <div className="contentSide">

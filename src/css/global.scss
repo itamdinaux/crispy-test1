@@ -1,6 +1,16 @@
 /* variable */
 
 :root {
+  --mainColor: yellow;
+  --secondColor: grey;
+
   --blackColor: #000;
   --blackTrans: rgba(var(--blackColor), 0.5);
+}
+
+.active-false {
+  background-color: var(--secondColor);
+}
+.active-true {
+  background-color: var(--mainColor);
 }
