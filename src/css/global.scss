@@ -1,0 +1,6 @@
+/* variable */
+
+:root {
+  --blackColor: #000;
+  --blackTrans: rgba(var(--blackColor), 0.5);
+}
