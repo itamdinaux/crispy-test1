@@ -33,7 +33,7 @@ const BoissonPage = ({ data }) => {
   return (
     <div className={`container pizzaOption `}>
       <div className="fullWidth return">
-        <Link to="/pizza">Retour</Link>
+        <Link to="/boisson">Retour</Link>
       </div>
       <div className="contentSide">
         <div className="contentMain">
