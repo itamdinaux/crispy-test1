@@ -5,9 +5,10 @@ import LegalMenu from "../components/Menu/MenuLegal"
 import "../css/footer.scss"
 const Footer = () => {
  return (
-  <div className="footer container">
+  <div className="footerWrapper"><div className="footer container">
    <LegalMenu/>
-  </div>
+  </div></div>
+  
  )
 }
 

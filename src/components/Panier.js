@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from "react"
+//components
+import ButtonCommand from "../components/Commande/ButtonCommande"
 //context
 import { Context } from "../context/Context"
 //css
@@ -32,14 +34,23 @@ const Panier = () => {
       context.removePanier(index, quantity, basePrice, supSum)
     }
   }
-  const deleteItem = (index) => {
-      context.deletePanier(index)
-    
+  const deleteItem = index => {
+    context.deletePanier(index)
   }
 
   return (
-    <div>
-      <h2>Ma commande ({service ? service === 1 ? "Livraison" : service === 2 ?"Emporter" :"Magazin fermé": "non defini"})</h2>
+    <div className="sidebarContent">
+      <h2>
+        Ma commande (
+        {service
+          ? service === 1
+            ? "Livraison"
+            : service === 2
+            ? "Emporter"
+            : "Magazin fermé"
+          : "non defini"}
+        )
+      </h2>
 
       <table className="panier">
         <tbody>
@@ -73,6 +84,7 @@ const Panier = () => {
                               item.supSum
                             )
                           }
+                          className="moins"
                         >
                           -
                         </button>
@@ -86,17 +98,15 @@ const Panier = () => {
                               item.supSum
                             )
                           }
+                          className="plus"
                         >
                           +
                         </button>
                         <button
-                          onClick={() =>
-                            deleteItem(
-                              index
-                            )
-                          }
+                          onClick={() => deleteItem(index)}
+                          className="delete"
                         >
-                          x
+                          supprimer
                         </button>
                       </div>
                     </td>
@@ -128,6 +138,7 @@ const Panier = () => {
           <></>
         )}
       </table>
+      <ButtonCommand />
     </div>
   )
 }

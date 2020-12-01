@@ -78,7 +78,8 @@ const PizzaPage = () => {
           >
             Blanche
           </button>
-          <button onClick={() => changeFiltre()}>Supprimer le fitre</button>
+          {trad || spec || blc ? <button onClick={() => changeFiltre()} className="delete">x</button> : ""}
+          
         </div>
       </div>
       <div className="contentSide">
@@ -91,8 +92,8 @@ const PizzaPage = () => {
                   className="bgProduct"
                 />
                 <h2>{item.title}</h2>
-                <p>{item.description.description}</p>
-                <div>
+                <p className="dsc">{item.description.description}</p>
+                <div className="price">
                   à partir de <span>{item.prixRegular} €</span>
                   <div className="more">+</div>
                 </div>

@@ -3,7 +3,6 @@ import { graphql, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import { navigate } from "gatsby"
 
-
 //components
 import Panier from "../components/Panier"
 //context
@@ -17,6 +16,12 @@ const PizzaPage = ({ data }) => {
   //taille
   const choiceTaille = [data.c.prixRegular, data.c.prixMaxi]
   const [taille, setTaille] = useState(0)
+  // category
+  const [catSup, setCatSup] = useState(0)
+
+  const category = c => {
+    setCatSup(catSup => c)
+  }
   //order
   const [supp, setSupp] = useState("")
   //reset
@@ -39,8 +44,16 @@ const PizzaPage = ({ data }) => {
       supList.push("aucun")
     }
     total = basePrice + supSum
-    
-    context.changePanier(nom, tailleName, basePrice, supList, supSum, total, quantity)
+
+    context.changePanier(
+      nom,
+      tailleName,
+      basePrice,
+      supList,
+      supSum,
+      total,
+      quantity
+    )
     navigate("/pizza")
   }
 
@@ -52,27 +65,16 @@ const PizzaPage = ({ data }) => {
 
   return (
     <div className={`container pizzaOption `}>
-      <div className="fullWidth return"><Link to="/pizza">Retour</Link></div>
+      <div className="fullWidth return">
+        <Link to="/pizza">Retour</Link>
+      </div>
       <div className="contentSide">
         <div className="contentMain">
           <BackgroundImage fluid={data.c.image.fluid} className="bgPizza" />
           <div className="contentPizza">
             <h1>{data.c.title}</h1>
             <p>{data.c.description.description}</p>
-            <h3>Supplément sélectionné</h3>
-            {supp ? (
-              <div>
-                {supp.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      {item.name}#{item.price}
-                    </div>
-                  )
-                })}
-              </div>
-            ) : (
-              <div>Aucun</div>
-            )}
+
             <h2>
               Taille
               {taille ? (
@@ -85,24 +87,44 @@ const PizzaPage = ({ data }) => {
               <button
                 onClick={() => setTaille(taille => 1)}
                 disabled={taille ? true : false}
+                className={`taille active-${taille === 1 ? "true" : "false"}`}
               >
-                Regular<span>{data.c.prixRegular} €</span>
+                Regular (30cm)<span>{data.c.prixRegular} €</span>
               </button>
               <button
                 onClick={() => setTaille(taille => 2)}
                 disabled={taille ? true : false}
+                className={`taille active-${taille === 2 ? "true" : "false"}`}
               >
-                Maxi<span>{data.c.prixMaxi} €</span>
+                Maxi (40cm)<span>{data.c.prixMaxi} €</span>
               </button>
             </div>
+
             {taille !== 0 ? (
               <>
+                <h2>Supplément sélectionné</h2>
+                {supp ? (
+                  <div className="supSelect">
+                    {supp.map((item, index) => {
+                      return (
+                        <div key={index} className="element">
+                          {item.name} <span>+{item.price}€</span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : (
+                  <div className="supSelect">Aucun</div>
+                )}
                 <h2>Supplément</h2>
-                <div className="supp">
+                <div className={`supp cat-${catSup}`}>
                   {data.d.nodes.map((item, index) => {
                     return (
-                      <div key={index}>
-                        <h3>
+                      <div key={index} className={`cat-${index + 1} catTitle`}>
+                        <button
+                          onClick={() => category(index + 1)}
+                          className="cat"
+                        >
                           {item.title}
                           <span>
                             {taille === 1
@@ -111,37 +133,37 @@ const PizzaPage = ({ data }) => {
                               ? item.prixMaxi + "€/p"
                               : ""}
                           </span>
-                          <div className="suppList">
-                            {item.supplement.map((item, index) => {
-                              return (
-                                <button
-                                  key={index}
-                                  onClick={
-                                    taille === 1
-                                      ? () =>
-                                          setSupp(supp => [
-                                            ...supp,
-                                            {
-                                              name: item.title,
-                                              price: item.type.prixRegular,
-                                            },
-                                          ])
-                                      : () =>
-                                          setSupp(supp => [
-                                            ...supp,
-                                            {
-                                              name: item.title,
-                                              price: item.type.prixMaxi,
-                                            },
-                                          ])
-                                  }
-                                >
-                                  {item.title}
-                                </button>
-                              )
-                            })}
-                          </div>
-                        </h3>
+                        </button>
+                        <div className="suppList">
+                          {item.supplement.map((item, index) => {
+                            return (
+                              <button
+                                key={index}
+                                onClick={
+                                  taille === 1
+                                    ? () =>
+                                        setSupp(supp => [
+                                          ...supp,
+                                          {
+                                            name: item.title,
+                                            price: item.type.prixRegular,
+                                          },
+                                        ])
+                                    : () =>
+                                        setSupp(supp => [
+                                          ...supp,
+                                          {
+                                            name: item.title,
+                                            price: item.type.prixMaxi,
+                                          },
+                                        ])
+                                }
+                              >
+                                {item.title}
+                              </button>
+                            )
+                          })}
+                        </div>
                       </div>
                     )
                   })}
@@ -159,7 +181,7 @@ const PizzaPage = ({ data }) => {
                     data.c.title,
                     taille === 1 ? "Regular" : "Maxi",
                     choiceTaille[taille - 1],
-                    supp ? supp : 0, 
+                    supp ? supp : 0,
                     1
                   )
                 }

@@ -7,13 +7,14 @@ import Phone from "../components/Branding/Phone"
 import "../css/branding.scss"
 const Branding = () => {
   return (
-    <div className="branding container">
+    <div className="brandingWrapper"><div className="branding container">
       <div className="flex flex-space">
-        <Logo />
+        <Logo theme="sombre" />
         <MainMenu />
         <Phone />
       </div>
-    </div>
+    </div></div>
+    
   )
 }
 

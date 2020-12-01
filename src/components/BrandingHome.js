@@ -23,9 +23,10 @@ const BrandingHome = () => {
   return (
     <>
       <BackgroundImage fluid={data.c.homeImage.fluid} className="bgHome">
+      <div className="bgDark"></div>
         <div className="brandingHome container">
           <div className="flex flex-space">
-            <Logo />
+            <Logo theme="clair" />
           </div>
         </div>
       </BackgroundImage>

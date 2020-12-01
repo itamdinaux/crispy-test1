@@ -1,7 +1,22 @@
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+//data
+const getData = graphql`
+  {
+    c: contentfulInfo {
+      phoneLink
+      phoneTitle
+    }
+  }
+`
 
 const Phone = () => {
-  return <div className="phone">081/340.628 </div>
+  const data = useStaticQuery(getData)
+  return (
+    <div className="phone">
+      <a href={`tel:${data.c.phoneLink}`}>{data.c.phoneTitle}</a>
+    </div>
+  )
 }
 
 export default Phone

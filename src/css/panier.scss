@@ -1,19 +1,66 @@
 .panier {
   width: 100%;
-  thead {
+  background-color: var(--whiteColor);
+  /* global */
+  td {
+    padding: 10px;
   }
+  /* tbody */
   tbody {
     tr {
-      border-bottom: 1px solid #ccc;
-
+      border-bottom: 1px solid var(--thirdGrey);
+      td:first-child {
+        width: 80%;
+      }
       td {
+        position: relative;
         .supp.none {
           display: none;
+        }
+        .moins,
+        .plus {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background-color: var(--secondGrey);
+        }
+        .moins {
+          margin-right: 5px;
+        }
+        .plus {
+          margin-left: 5px;
+        }
+        .delete {
+          position: absolute;
+          left: 100%;
+          z-index: 11;
+          font-size: 0.75em;
         }
       }
     }
   }
+  /* tfoot */
   tfoot {
+    background-color: var(--secondGrey);
+
+    tr {
+      td {
+        position: relative;
+        z-index: 1;
+
+        padding: 10px;
+        &:before {
+          content: "";
+          background-color: var(--secondGrey);
+          position: absolute;
+          z-index: -1;
+          top: -1px;
+          left: -20px;
+          width: calc(100% + 40px);
+          height: calc(100% + 1px;
+        }
+      }
+    }
   }
 }
 

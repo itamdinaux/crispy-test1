@@ -32,8 +32,8 @@ const DessertPage = ({data}) => {
               <div key={index} className={`productOne`}>
                 <BackgroundImage fluid={item.image.fluid} className="bgProduct" />
                 <h2>{item.title}</h2>
-                <p>{item.description.description}</p>
-                <div>
+                <p className="dsc">{item.description.description}</p>
+                <div className="price">
                   à partir de <span>{item.prix} €</span>
                   <div className="more">+</div>
                 </div>

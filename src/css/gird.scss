@@ -13,6 +13,7 @@
 .flex,
 .contentSide {
   display: flex;
+  flex-direction: column;
 }
 .flex-space {
   justify-content: space-between;
@@ -23,7 +24,6 @@
 }
 .contentSide > .sideBar,
 .contentSide > .contentMain {
-  width: 100%;
   padding: 0px 10px;
   margin-bottom: 30px;
 }
@@ -40,13 +40,18 @@
   .container {
     width: var(--narrow);
   }
+  .flex,
+  .contentSide {
+    flex-direction: row;
+  }
   .contentSide > .sideBar,
   .contentSide > .contentMain {
     padding: 0px;
   }
   .contentSide > .sideBar {
-    width: 33%;
+    width: 31%;
     margin-bottom: 0px;
+    margin-left: 2%;
   }
   .contentSide > .contentMain {
     width: 67%;

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { OpenClose } from '../utils/openCheck.js';
+//utils
+import { OpenClose } from "../utils/openCheck.js"
 
 export const Context = React.createContext()
 
@@ -22,10 +23,15 @@ const getData = graphql`
 
 const Provider = props => {
   const data = useStaticQuery(getData)
-  const magOpen = data.c.ouverture ? OpenClose(data) : false
+  // check if open mode
+  const magOpen = data.c.ouverture ? OpenClose(data.c.horaire) : false
   const [mode] = useState(magOpen)
+  //livraison, emporter, non-defini
   let [service, setService] = useState(0)
+  //adrs
+  let [adrs, setAdrs] = useState("")
 
+  //commande
   let [panier, setPanier] = useState([])
   // objToCheck
   const objToCheck = panier[panier.length - 1]
@@ -67,6 +73,7 @@ const Provider = props => {
         panier,
         service,
         mode,
+        adrs,
         changePanier: (
           nom,
           tailleName,
@@ -90,9 +97,10 @@ const Provider = props => {
               },
             ])
           ),
-          // livraison ou emporter
+        // livraison ou emporter
         changeService: type => setService(service => type),
-        
+        // adrs
+        changeAdrs: element => setAdrs(adrs => element),
         // delete element de panier
         deletePanier: index =>
           setPanier(panier => panier.filter((item, i) => i !== index)),

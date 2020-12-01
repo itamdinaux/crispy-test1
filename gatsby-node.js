@@ -29,6 +29,7 @@ exports.createPages = async ({ graphql, actions }) => {
       boisson: allContentfulBoisson {
         nodes {
           slug
+          type
           title
           id
         }
@@ -118,6 +119,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
   result.data.boisson.nodes.forEach(boisson => {
+    if(boisson.type.length >1){
     createPage({
       path: `/boisson/${boisson.slug}`,
       component: path.resolve(`./src/templates/BoissonPageOption.js`),
@@ -126,5 +128,6 @@ exports.createPages = async ({ graphql, actions }) => {
         type: "boissonOption",
       },
     })
+    }
   })
 }

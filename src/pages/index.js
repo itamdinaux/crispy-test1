@@ -1,15 +1,43 @@
 import React, { useState, useContext, useEffect } from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import BackgroundImage from "gatsby-background-image"
 //component
 import Livraison from "../components/Service/Livraison"
 import Emporter from "../components/Service/Emporter"
 import Closed from "../components/Service/Closed"
+import Horaire from "../components/Branding/Horaire"
+import Phone from "../components/Branding/Phone"
+//utils
+import { Localise } from "../utils/localise.js"
 //context
 import { Context } from "../context/Context"
 //css
 import "../css/index.scss"
-
+//data
+const getData = graphql`
+  {
+    c: contentfulInfo {
+      logoSombre {
+        fluid {
+          ...GatsbyContentfulFluid
+        }
+      }
+      title
+      adresse {
+        lon
+        lat
+      }
+    }
+  }
+`
 const Index = () => {
+  //data
+  const data = useStaticQuery(getData)
+  //adressMag
+  const adressMag = Localise(data.c.adresse.lat, data.c.adresse.lon)
+  //context
   const context = useContext(Context)
+  // ouvert - fermé
   const [mode, setMode] = useState(0)
 
   useEffect(() => {
@@ -19,6 +47,7 @@ const Index = () => {
   }, [context])
 
   const [service, setService] = useState(0)
+
   return (
     <div className="container">
       {mode ? (
@@ -45,7 +74,7 @@ const Index = () => {
         <div className={`mode ${mode ? "open" : "closed"}`}>
           <div className="modeHeader">
             <button className={`active-${service ? "true" : "false"}`}>
-              Fermé
+              Le magasin est fermé
             </button>
           </div>
           <div className="modeContent">
@@ -55,11 +84,12 @@ const Index = () => {
       )}
 
       <div className="signature">
-        Image
-        <div>
-          <h1>Title</h1>
-          <p></p>
-          <a href="/">Lien</a>
+        <BackgroundImage fluid={data.c.logoSombre.fluid} className="logo" />
+        <div className="contenu">
+          <h1>{data.c.title}</h1>
+          <p className="adrs">{adressMag}</p>
+          <Horaire />
+          <Phone />
         </div>
       </div>
     </div>
