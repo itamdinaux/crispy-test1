@@ -7,7 +7,6 @@ import { Context } from "../context/Context"
 import "../css/panier.scss"
 const Panier = () => {
   const context = useContext(Context)
-  console.log(context)
 
   const [service, setService] = useState(0)
 
