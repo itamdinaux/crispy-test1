@@ -157,7 +157,22 @@
     }
   }
 }
-
+/* boisson */
+.boisson {
+  .action {
+    button {
+      border: 1px solid var(--thirdGrey);
+      display: flex !important;
+      width: 100% !important;
+      justify-content: space-between;
+      margin-bottom: -1px;
+      background-color: var(--whiteColor) !important;
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+}
 /* little */
 @media screen and (min-width: 500px) {
 }

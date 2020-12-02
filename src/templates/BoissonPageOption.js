@@ -31,7 +31,7 @@ const BoissonPage = ({ data }) => {
     navigate("/boisson")
   }
   return (
-    <div className={`container pizzaOption `}>
+    <div className={`container pizzaOption boisson`}>
       <div className="fullWidth return">
         <Link to="/boisson">Retour</Link>
       </div>
@@ -41,18 +41,18 @@ const BoissonPage = ({ data }) => {
           <div className="contentPizza">
             <h1>{data.c.title}</h1>
 
-            <div className="action">
+            <div className="action ">
               <button
                 onClick={() =>
                   result(data.c.title, "33cl", data.c.prixRegular, 1)
                 }
               >
-                33cl {data.c.prixRegular}€
+                33cl <span>{data.c.prixRegular}€</span>
               </button>
               <button
                 onClick={() => result(data.c.title, "1,5l", data.c.prixMaxi, 1)}
               >
-                1,5l {data.c.prixMaxi} €
+                1,5l <span>{data.c.prixMaxi} €</span>
               </button>
             </div>
           </div>

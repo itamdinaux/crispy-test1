@@ -21,8 +21,8 @@ const LegalPage = ({ data }) => {
 
   return (
     <div className={`container`}>
+      <h1>{title}</h1>
       <div className="fullWidth">
-        content
         {contenu && renderRichText(contenu, options)}
       </div>
     </div>
@@ -38,13 +38,13 @@ export default LegalPage
 export const query = graphql`
   query($id: String) {
     contentfulLegalInfo(id: { eq: $id }) {
+      title
       contenu {
         raw
         references {
           ... on ContentfulLegalInfo {
             contentful_id
             slug
-            title
           }
           ... on ContentfulAsset {
             contentful_id
