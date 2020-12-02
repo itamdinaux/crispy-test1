@@ -48,7 +48,7 @@ const Panier = () => {
           ) : service === 2 ? (
             <span>Emporter</span>
           ) : (
-            <span>Magazin fermé</span>
+            <span>Service non defini</span>
           )
         ) : (
           <span>Service non defini</span>

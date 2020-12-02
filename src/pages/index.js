@@ -7,8 +7,7 @@ import Emporter from "../components/Service/Emporter"
 import Closed from "../components/Service/Closed"
 import Horaire from "../components/Branding/Horaire"
 import Phone from "../components/Branding/Phone"
-//utils
-import { Localise } from "../utils/localise.js"
+
 //context
 import { Context } from "../context/Context"
 //css
@@ -27,6 +26,7 @@ const getData = graphql`
         lon
         lat
       }
+      adressText
     }
   }
 `
@@ -34,7 +34,7 @@ const Index = () => {
   //data
   const data = useStaticQuery(getData)
   //adressMag
-  const adressMag = Localise(data.c.adresse.lat, data.c.adresse.lon)
+  const adressMag = data.c.adressText
   //context
   const context = useContext(Context)
   // ouvert - fermé
