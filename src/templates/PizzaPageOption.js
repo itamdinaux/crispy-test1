@@ -192,7 +192,6 @@ const PizzaPage = ({ data }) => {
           </div>
         </div>
         <div className="sideBar">
-          sidebar
           <Panier />
         </div>
       </div>

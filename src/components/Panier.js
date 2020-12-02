@@ -40,16 +40,19 @@ const Panier = () => {
 
   return (
     <div className="sidebarContent">
-      <h2>
-        Ma commande (
-        {service
-          ? service === 1
-            ? "Livraison"
-            : service === 2
-            ? "Emporter"
-            : "Magazin fermé"
-          : "non defini"}
-        )
+      <h2 className="commandeTitle">
+        Ma commande
+        {service ? (
+          service === 1 ? (
+            <span>Livraison</span>
+          ) : service === 2 ? (
+            <span>Emporter</span>
+          ) : (
+            <span>Magazin fermé</span>
+          )
+        ) : (
+          <span>Service non defini</span>
+        )}
       </h2>
 
       <table className="panier">
@@ -84,7 +87,7 @@ const Panier = () => {
                               item.supSum
                             )
                           }
-                          className="moins"
+                          className="moins btn"
                         >
                           -
                         </button>
@@ -98,15 +101,15 @@ const Panier = () => {
                               item.supSum
                             )
                           }
-                          className="plus"
+                          className="plus btn"
                         >
                           +
                         </button>
                         <button
                           onClick={() => deleteItem(index)}
-                          className="delete"
+                          className="delete btn"
                         >
-                          supprimer
+                          x
                         </button>
                       </div>
                     </td>

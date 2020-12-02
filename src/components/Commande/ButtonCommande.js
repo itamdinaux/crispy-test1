@@ -11,7 +11,9 @@ const ButtonCommande = () => {
     setMode(mode => context.mode)
   }, [context])
 
-  return <div>{mode ? <ButtonValide /> : <ButtonClose />}</div>
+  return (
+    <div className="commande">{mode ? <ButtonValide /> : <ButtonClose />}</div>
+  )
 }
 
 export default ButtonCommande
