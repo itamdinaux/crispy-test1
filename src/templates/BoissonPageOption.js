@@ -5,6 +5,8 @@ import { navigate } from "gatsby"
 
 //components
 import Panier from "../components/Panier"
+import Time from "../components/Branding/Time"
+
 //context
 import { Context } from "../context/Context"
 //css
@@ -58,7 +60,7 @@ const BoissonPage = ({ data }) => {
           </div>
         </div>
         <div className="sideBar">
-          <Panier />
+          <Panier /> <Time />
         </div>
       </div>
     </div>

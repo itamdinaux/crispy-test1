@@ -24,7 +24,7 @@ const Horaire = () => {
   const data = useStaticQuery(getData)
   //check if open
   const magOpen = data.c.ouverture ? OpenClose(data.c.horaire) : false
-  console.log(magOpen)
+
   const [mode] = useState(magOpen)
   const [horaire, setHoraire] = useState(0)
   const show = () => {
@@ -41,27 +41,25 @@ const Horaire = () => {
           {data.c.horaire.map((item, index) => {
             return (
               <div key={index} className="cell">
-              <div className="titleCell">
-                {item.day}
-                </div>
+                <div className="titleCell">{item.day}</div>
                 <div className="horaireCell">
-                {item.hour.map((item, index) => {
-                  return (
-                    <span key={index}>
-                      <NumberFormat
-                        value={item.debut}
-                        displayType={"text"}
-                        format="##:##"
-                      />
-                      -
-                      <NumberFormat
-                        value={item.fin}
-                        displayType={"text"}
-                        format="##:##"
-                      />
-                    </span>
-                  )
-                })}
+                  {item.hour.map((item, index) => {
+                    return (
+                      <span key={index}>
+                        <NumberFormat
+                          value={item.debut}
+                          displayType={"text"}
+                          format="##:##"
+                        />
+                        -
+                        <NumberFormat
+                          value={item.fin}
+                          displayType={"text"}
+                          format="##:##"
+                        />
+                      </span>
+                    )
+                  })}
                 </div>
               </div>
             )

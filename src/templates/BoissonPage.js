@@ -3,6 +3,7 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 //components
 import Panier from "../components/Panier"
+import Time from "../components/Branding/Time"
 //context
 import { Context } from "../context/Context"
 //css
@@ -83,6 +84,7 @@ const BoissonPage = () => {
         </div>
         <div className="sideBar">
           <Panier />
+          <Time />
         </div>
       </div>
     </div>

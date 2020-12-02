@@ -1,0 +1,43 @@
+.time {
+  h2 {
+    color: var(--blackColor);
+
+    display: block;
+    padding: 10px 0px;
+    font-weight: 700;
+  }
+
+  .table {
+    width: 100%;
+    display: table;
+    margin: 10px 0px 20px;
+    .cell {
+      display: table-row;
+      position: relative;
+
+      .titleCell,
+      .horaireCell {
+        display: table-cell;
+        border-bottom: 1px dotted var(--thirdGrey);
+        padding: 5px;
+        > span {
+          display: block;
+        }
+      }
+    }
+  }
+} /* little */
+@media screen and (min-width: 500px) {
+}
+
+/* narrow */
+@media screen and (min-width: 740px) {
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+}
+
+/* wide */
+@media screen and (min-width: 1200px) {
+}

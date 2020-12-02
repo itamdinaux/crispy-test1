@@ -3,6 +3,8 @@ import { graphql, useStaticQuery, Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 //components
 import Panier from "../components/Panier"
+import Time from "../components/Branding/Time"
+
 //css
 import "../css/productPage.scss"
 //data
@@ -78,8 +80,13 @@ const PizzaPage = () => {
           >
             Blanche
           </button>
-          {trad || spec || blc ? <button onClick={() => changeFiltre()} className="delete">x</button> : ""}
-          
+          {trad || spec || blc ? (
+            <button onClick={() => changeFiltre()} className="delete">
+              x
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="contentSide">
@@ -103,7 +110,7 @@ const PizzaPage = () => {
           })}
         </div>
         <div className="sideBar">
-          <Panier />
+          <Panier /> <Time />
         </div>
       </div>
     </div>

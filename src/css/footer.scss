@@ -10,6 +10,16 @@
       li {
         a {
           padding: 5px;
+          color: var(--blackColor);
+          font-size: 0.9em;
+        }
+        &:after {
+          content: "-";
+        }
+      }
+      li:last-child {
+        &:after {
+          content: "";
         }
       }
     }
