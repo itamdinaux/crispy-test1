@@ -14,6 +14,15 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.SPACE_ID,
+        accessToken: process.env.ACCESS_TOKEN,
+        downloadLocal: false,
+      },
+    },
+
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `pages`,
@@ -24,14 +33,6 @@ module.exports = {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: require.resolve(`./src/components/Layout.js`),
-      },
-    },
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.SPACE_ID,
-        accessToken: process.env.ACCESS_TOKEN,
-        downloadLocal: false,
       },
     },
   ],
