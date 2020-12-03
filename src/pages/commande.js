@@ -115,19 +115,23 @@ const Commande = () => {
         </table>
       </div>
       <div className="afterCommande">
-        {context.service ? (
-          context.service === 1 ? (
-            <Livraison />
-          ) : context.service === 2 ? (
-            <Emporter />
+        {typeof window !== "undefined" ? (
+          context.service ? (
+            context.service === 1 ? (
+              <Livraison />
+            ) : context.service === 2 ? (
+              <Emporter />
+            ) : (
+              <Signature />
+            )
           ) : (
-            <Signature />
+            <div className="flex">
+              <p>Vous n'avez pas choisi de service (livraison ou à emporter)</p>
+              <button onClick={() => selection()}>sélectionner</button>
+            </div>
           )
         ) : (
-          <div className="flex">
-            <p>Vous n'avez pas choisi de service (livraison ou à emporter)</p>
-            <button onClick={() => selection()}>sélectionner</button>
-          </div>
+          ""
         )}
       </div>
     </div>
