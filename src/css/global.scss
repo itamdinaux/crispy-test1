@@ -34,3 +34,16 @@ body {
 .mainContent {
   flex-grow: 1;
 }
+
+/* return  */
+.return {
+  opacity: 0.5;
+  margin-bottom: 20px;
+  a {
+    color: var(--blackColor);
+    text-decoration: none;
+    &:before {
+      content: "< ";
+    }
+  }
+}

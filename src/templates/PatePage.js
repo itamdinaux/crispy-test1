@@ -28,7 +28,7 @@ const getData = graphql`
 const PatePage = () => {
   const data = useStaticQuery(getData)
 
-  return <ProductPage data={data} />
+  return <ProductPage data={data} type="pate" />
 }
 
 export default PatePage

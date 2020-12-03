@@ -42,7 +42,7 @@ const Layout = ({ children, pageContext, location }) => {
               : ""
           }`}
         >
-          <Branding />
+          <Branding location={location} />
           <Adress />
           <div className="mainContent">{children}</div>
 

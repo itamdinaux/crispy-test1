@@ -26,42 +26,48 @@ const Time = () => {
   //check if open
   const magOpen = data.c.ouverture ? OpenClose(data.c.horaire) : false
   const [mode] = useState(magOpen)
-
+  const [ouverture, setOuverture] = useState(0)
   return (
     <>
       {mode ? (
         ""
       ) : (
         <div className="time">
-          <h2>Horaire d'ouverture</h2>
-          <div className="table">
-            {data.c.horaire.map((item, index) => {
-              return (
-                <div key={index} className="cell">
-                  <div className="titleCell">{item.day}</div>
-                  <div className="horaireCell">
-                    {item.hour.map((item, index) => {
-                      return (
-                        <span key={index}>
-                          <NumberFormat
-                            value={item.debut}
-                            displayType={"text"}
-                            format="##:##"
-                          />
-                          -
-                          <NumberFormat
-                            value={item.fin}
-                            displayType={"text"}
-                            format="##:##"
-                          />
-                        </span>
-                      )
-                    })}
+          <button onClick={() => setOuverture(ouverture => !ouverture)}>
+            voir les horaires d'ouverture
+          </button>
+          {ouverture ? (
+            <div className="table">
+              {data.c.horaire.map((item, index) => {
+                return (
+                  <div key={index} className="cell">
+                    <div className="titleCell">{item.day}</div>
+                    <div className="horaireCell">
+                      {item.hour.map((item, index) => {
+                        return (
+                          <span key={index}>
+                            <NumberFormat
+                              value={item.debut}
+                              displayType={"text"}
+                              format="##:##"
+                            />
+                            -
+                            <NumberFormat
+                              value={item.fin}
+                              displayType={"text"}
+                              format="##:##"
+                            />
+                          </span>
+                        )
+                      })}
+                    </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </>

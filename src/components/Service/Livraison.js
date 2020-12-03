@@ -30,23 +30,19 @@ const getData = graphql`
       distanceLivraison
       distanceLivraisonTitle
     }
-    d:contentfulInfo {
-
-    adresse {
-      lon
-      lat
+    d: contentfulInfo {
+      adresse {
+        lon
+        lat
+      }
     }
-
   }
-  }
-  
 `
 const Livraison = () => {
   const mydata = useStaticQuery(getData)
   const context = useContext(Context)
 
   const nav = service => {
-    
     context.changeService(service)
     navigate("/pizza")
   }
@@ -56,7 +52,7 @@ const Livraison = () => {
     navigate("/pizza")
   }
   //AUTOCOMPLETE
-  
+
   const [valide, setValide] = useState(0)
   const maxDistance = 5000
 
@@ -113,10 +109,10 @@ const Livraison = () => {
       } = suggestion
 
       return (
-        <li>
-        <button key={place_id} onClick={handleSelect(suggestion)}>
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
-        </button>
+        <li key={place_id}>
+          <button onClick={handleSelect(suggestion)}>
+            <strong>{main_text}</strong> <small>{secondary_text}</small>
+          </button>
         </li>
       )
     })
@@ -132,8 +128,9 @@ const Livraison = () => {
       ) : valide === 2 ? (
         <>
           <p>{mydata.c.homeAdressOk.homeAdressOk}</p>
-          <button onClick={() => livraison(1, value)}>Commander à livrer</button>
-          
+          <button onClick={() => livraison(1, value)}>
+            Commander à livrer
+          </button>
         </>
       ) : valide === 3 ? (
         <>
@@ -159,9 +156,12 @@ const Livraison = () => {
               name="address"
               placeholder="Où souhaitez vous être livré?"
             />
-            <div className="sugg">{status === "OK" && <ul className="sugg">{renderSuggestions()}</ul>}</div>
+            <div className="sugg">
+              {status === "OK" && (
+                <ul className="sugg">{renderSuggestions()}</ul>
+              )}
+            </div>
           </div>
-          
         </>
       )}
     </div>

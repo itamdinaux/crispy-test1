@@ -14,13 +14,14 @@ import { Context } from "../context/Context"
 const BoissonPage = ({ data }) => {
   //context
   const context = useContext(Context)
+  const t = "boisson"
 
-  const result = (nom, tailleName, price, quantity) => {
+  const result = (nom, tailleName, price, quantity, t) => {
     let supList = []
     supList.push("0")
     const supSum = 0
     const total = price + supSum
-
+    const type = t
     context.changePanier(
       nom,
       tailleName,
@@ -28,7 +29,8 @@ const BoissonPage = ({ data }) => {
       supList,
       supSum,
       total,
-      quantity
+      quantity,
+      type
     )
     navigate("/boisson")
   }
@@ -46,13 +48,15 @@ const BoissonPage = ({ data }) => {
             <div className="action ">
               <button
                 onClick={() =>
-                  result(data.c.title, "33cl", data.c.prixRegular, 1)
+                  result(data.c.title, "33cl", data.c.prixRegular, 1, t)
                 }
               >
                 33cl <span>{data.c.prixRegular}€</span>
               </button>
               <button
-                onClick={() => result(data.c.title, "1,5l", data.c.prixMaxi, 1)}
+                onClick={() =>
+                  result(data.c.title, "1,5l", data.c.prixMaxi, 1, t)
+                }
               >
                 1,5l <span>{data.c.prixMaxi} €</span>
               </button>

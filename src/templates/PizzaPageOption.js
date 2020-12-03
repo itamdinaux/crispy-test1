@@ -12,6 +12,7 @@ import { Context } from "../context/Context"
 //css
 import "../css/pizza-page-option.scss"
 const PizzaPage = ({ data }) => {
+  const t = "pizza"
   //context
   const context = useContext(Context)
 
@@ -33,7 +34,7 @@ const PizzaPage = ({ data }) => {
   }
   //result
   let total = 0
-  const result = (nom, tailleName, basePrice, sup, quantity) => {
+  const result = (nom, tailleName, basePrice, sup, quantity, t) => {
     let supSum = 0
     let supList = []
     if (sup) {
@@ -46,7 +47,7 @@ const PizzaPage = ({ data }) => {
       supList.push("aucun")
     }
     total = basePrice + supSum
-
+    const type = t
     context.changePanier(
       nom,
       tailleName,
@@ -54,7 +55,8 @@ const PizzaPage = ({ data }) => {
       supList,
       supSum,
       total,
-      quantity
+      quantity,
+      type
     )
     navigate("/pizza")
   }
@@ -184,7 +186,8 @@ const PizzaPage = ({ data }) => {
                     taille === 1 ? "Regular" : "Maxi",
                     choiceTaille[taille - 1],
                     supp ? supp : 0,
-                    1
+                    1,
+                    t
                   )
                 }
               >

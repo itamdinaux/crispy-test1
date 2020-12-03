@@ -1,9 +1,10 @@
 import React from "react"
+import { navigate } from "gatsby"
 
 const ButtonValide = () => {
   return (
     <div className="buttonCommande">
-      <button>Valider</button>
+      <button onClick={() => navigate("/commande")}>Valider</button>
     </div>
   )
 }

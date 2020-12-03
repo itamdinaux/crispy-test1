@@ -28,7 +28,7 @@ const getData = graphql`
 const PainPage = () => {
   const data = useStaticQuery(getData)
 
-  return <ProductPage data={data} />
+  return <ProductPage data={data} type="pain" />
 }
 
 export default PainPage

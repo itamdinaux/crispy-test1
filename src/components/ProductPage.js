@@ -9,7 +9,8 @@ import { Context } from "../context/Context"
 //css
 import "../css/productPage.scss"
 
-const DessertPage = ({ data }) => {
+const ProductPage = ({ data, type }) => {
+  const t = type
   //context
   const context = useContext(Context)
   //addPanier
@@ -21,7 +22,7 @@ const DessertPage = ({ data }) => {
     supList.push("0")
     const supSum = 0
     const total = basePrice + supSum
-
+    const type = t
     context.changePanier(
       nom,
       tailleName,
@@ -29,7 +30,8 @@ const DessertPage = ({ data }) => {
       supList,
       supSum,
       total,
-      quantity
+      quantity,
+      type
     )
   }
   return (
@@ -67,4 +69,4 @@ const DessertPage = ({ data }) => {
   )
 }
 
-export default DessertPage
+export default ProductPage

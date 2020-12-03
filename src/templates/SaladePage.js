@@ -28,7 +28,7 @@ const getData = graphql`
 const SaladePage = () => {
   const data = useStaticQuery(getData)
 
-  return <ProductPage data={data} />
+  return <ProductPage data={data} type="salade" />
 }
 
 export default SaladePage

@@ -1,0 +1,101 @@
+.mobileElement {
+  position: relative;
+  /* global */
+  .mobileMenu,
+  .mobilePanier {
+    transition: all 0.7s ease-in-out;
+  }
+  /* menu */
+  .mobileButtonMenu {
+    position: fixed;
+    z-index: 9999;
+    background: red;
+    width: 50px;
+    height: 50px;
+    top: 50px;
+    right: 0px;
+  }
+
+  .mobileMenu {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    right: -100%;
+    top: 0px;
+  }
+
+  /* mobile panier */
+  .mobileButtonPanier,
+  .mobileButtonPanierClose {
+    position: fixed;
+    bottom: 0px;
+    z-index: 9999;
+    left: 0px;
+  }
+  .mobileButtonPanierClose {
+    z-index: 111111;
+  }
+
+  /* narrow */
+  @media screen and (min-width: 740px) {
+    .mobileButtonPanier {
+      position: inherit;
+      z-index: inherit;
+    }
+    .mobileButtonPanierClose {
+      display: block;
+      position: fixed;
+      bottom: 0px;
+      left: 0px;
+    }
+  }
+
+  .mobilePanier {
+    position: fixed;
+    z-index: 999;
+    bottom: -100%;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+  }
+}
+/* action */
+.panier-true {
+  .mobilePanier {
+    bottom: 0%;
+  }
+}
+.menu-true {
+  .mobileMenu {
+    right: 0%;
+  }
+}
+
+/* little */
+@media screen and (min-width: 500px) {
+}
+
+/* narrow */
+@media screen and (min-width: 740px) {
+  .mobileElement {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+  .mobileButtonMenu,
+  .mobileMenu,
+  .mobileButtonPanier,
+  .mobilePanier {
+    display: none;
+  }
+}
+
+/* wide */
+@media screen and (min-width: 1200px) {
+}

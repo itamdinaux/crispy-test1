@@ -63,6 +63,13 @@ const Panier = () => {
                 return (
                   <tr key={index}>
                     <td>
+                      {item.type === "salade" ||
+                      item.type === "pizza" ||
+                      item.type === "pate" ? (
+                        <span className="type">{item.type} </span>
+                      ) : (
+                        ""
+                      )}
                       {item.nom} {item.tailleName}
                       <div
                         className={`supp ${item.supList.map(item => {

@@ -27,11 +27,13 @@ const getData = graphql`
   }
 `
 const BoissonPage = () => {
+  const t = "boisson"
+
   const data = useStaticQuery(getData)
   //context
   const context = useContext(Context)
   //addPanier
-  const addPanier = (title, prix, quantity, description) => {
+  const addPanier = (title, prix, quantity, description, t) => {
     const nom = title
     const tailleName = description
     const basePrice = prix
@@ -39,7 +41,7 @@ const BoissonPage = () => {
     supList.push("0")
     const supSum = 0
     const total = basePrice + supSum
-
+    const type = t
     context.changePanier(
       nom,
       tailleName,
@@ -47,7 +49,8 @@ const BoissonPage = () => {
       supList,
       supSum,
       total,
-      quantity
+      quantity,
+      type
     )
   }
 
@@ -72,7 +75,7 @@ const BoissonPage = () => {
                 ) : (
                   <button
                     onClick={() =>
-                      addPanier(item.title, item.prixRegular, 1, "33cl")
+                      addPanier(item.title, item.prixRegular, 1, "33cl", t)
                     }
                   >
                     aller aux options

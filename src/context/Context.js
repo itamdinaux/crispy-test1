@@ -81,7 +81,8 @@ const Provider = props => {
           supList,
           supSum,
           total,
-          quantity
+          quantity,
+          type
         ) =>
           setPanier(
             (panier = [
@@ -94,6 +95,7 @@ const Provider = props => {
                 supSum: supSum,
                 total: total,
                 quantity: quantity,
+                type: type,
               },
             ])
           ),

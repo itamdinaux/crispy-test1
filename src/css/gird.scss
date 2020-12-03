@@ -40,6 +40,13 @@
   .container {
     width: var(--narrow);
   }
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+  .container {
+    width: var(--normal);
+  }
   .flex,
   .contentSide {
     flex-direction: row;
@@ -56,13 +63,6 @@
   .contentSide > .contentMain {
     width: 67%;
     margin-bottom: 0px;
-  }
-}
-
-/* normal */
-@media screen and (min-width: 980px) {
-  .container {
-    width: var(--normal);
   }
 }
 

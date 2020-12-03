@@ -2,6 +2,18 @@
 .brandingWrapper {
   background-color: var(--whiteColor);
   padding: 10px 0px;
+  .flex {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  /* narrow */
+  @media screen and (min-width: 740px) {
+    .flex {
+      flex-direction: row;
+      margin-bottom: 0px;
+    }
+  }
 }
 /* logo */
 .bgDark {
@@ -40,12 +52,15 @@
 /* menu */
 .branding {
   .mainMenu {
-    display: flex;
+    display: none;
     align-self: center;
     flex-grow: 1;
     justify-self: flex-start;
     margin-left: 10px;
-
+    /* normal */
+    @media screen and (min-width: 980px) {
+      display: flex;
+    }
     li {
       a {
         font-size: 0.9em;

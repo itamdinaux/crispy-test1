@@ -5,13 +5,15 @@ import Img from "gatsby-image"
 
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { BLOCKS, INLINES } from "@contentful/rich-text-types"
+
+//css
+import "../css/legalPage.scss"
+
 const options = {
   renderNode: {
-    [INLINES.ENTRY_HYPERLINK]: ({
-      data: {
-        target: { slug, title },
-      },
-    }) => <Link to={`/${slug}`}>{title}</Link>,
+    [INLINES.ENTRY_HYPERLINK]: node => (
+      <Link to={`/${node.data.target.slug}`}>{node.content[0].value}</Link>
+    ),
     [BLOCKS.EMBEDDED_ASSET]: node => <Img {...node.data.target} />,
   },
 }

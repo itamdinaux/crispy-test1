@@ -60,8 +60,8 @@ const Adress = () => {
               ) : (
                 <div className="element">
                   <p>
-                    Le magasin est fermé, n'hésitez pas à revenir d'ici peu de
-                    temps
+                    Le restaurant est fermé, n'hésitez pas à revenir d'ici peu
+                    de temps
                   </p>
                 </div>
               )
@@ -76,7 +76,8 @@ const Adress = () => {
           ) : (
             <div className="element">
               <p>
-                Le magasin est fermé, n'hésitez pas à revenir d'ici peu de temps
+                Le restaurant est fermé, n'hésitez pas à revenir d'ici peu de
+                temps
               </p>
             </div>
           )}

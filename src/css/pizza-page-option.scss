@@ -1,15 +1,4 @@
 .pizzaOption {
-  .return {
-    opacity: 0.5;
-    margin-bottom: 20px;
-    a {
-      color: var(--blackColor);
-      text-decoration: none;
-      &:before {
-        content: "< ";
-      }
-    }
-  }
   .contentMain {
     display: flex;
     background-color: var(--whiteColor);
