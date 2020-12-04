@@ -47,6 +47,11 @@ const Mobile = ({ location }) => {
         <span></span>
       </button>
       <ul className="mobileMenu">
+        <li>
+          <Link to="/" onClick={() => changeMenu()}>
+            Crispy Pizza
+          </Link>
+        </li>
         {data.c.nodes.map((item, index) => {
           return (
             <li key={index}>

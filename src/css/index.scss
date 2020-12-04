@@ -105,10 +105,11 @@
     h2 {
       color: var(--mainColor);
       background-color: var(--secondColor);
-      display: inline-block;
+      display: inline;
       padding: 5px 10px;
       text-transform: uppercase;
       font-size: 0.75em;
+      line-height: 4em;
     }
     button {
       display: block;

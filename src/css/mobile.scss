@@ -19,10 +19,30 @@
   .mobileMenu {
     position: fixed;
     z-index: 999;
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 100px);
+    height: calc(100% - 100px);
     right: -100%;
     top: 0px;
+    background-color: var(--mainColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+    li {
+      a {
+        border-bottom: 1px dotted var(--blackColor);
+        display: block;
+        text-transform: capitalize;
+        font-weight: 900;
+        color: var(--blackColor);
+        font-size: 2em;
+        text-decoration: none;
+      }
+      .active {
+        border-bottom: 1px dotted var(--whiteColor);
+        color: var(--whiteColor);
+      }
+    }
   }
 
   /* mobile panier */
@@ -33,6 +53,45 @@
     z-index: 9999;
     left: 0px;
   }
+
+  .mobileButtonPanier {
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    background-color: var(--mainColor);
+    padding: 20px 0px;
+    justify-content: center;
+    align-items: center;
+    > span {
+      margin-left: 10px;
+      display: inline-block;
+      .icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        line-height: 30px;
+        background-color: var(--whiteColor);
+        position: relative;
+        svg {
+          padding-top: 5px;
+          height: 20px;
+          width: 20px;
+        }
+        .nbr {
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          width: 20px;
+          height: 20px;
+          line-height: 22px;
+          font-size: 0.75em;
+          border-radius: 20px;
+          background-color: var(--blackColor);
+          color: var(--mainColor);
+        }
+      }
+    }
+  }
   .mobileButtonPanierClose {
     z-index: 111111;
   }
@@ -42,6 +101,15 @@
     .mobileButtonPanier {
       position: inherit;
       z-index: inherit;
+      display: inline-block;
+      width: max-content;
+      padding: 10px 20px;
+      background-color: inherit;
+      > span {
+        .icon {
+          background-color: var(--mainColor);
+        }
+      }
     }
     .mobileButtonPanierClose {
       display: block;
@@ -58,6 +126,8 @@
     left: 0px;
     height: 100%;
     width: 100%;
+    background-color: var(--whiteColor);
+    display: flex;
   }
 }
 /* action */

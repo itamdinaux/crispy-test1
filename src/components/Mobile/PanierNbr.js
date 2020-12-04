@@ -19,9 +19,9 @@ const PanierNbr = () => {
     setNbr(nbr => t)
   }, [context])
   return (
-    <div>
+    <div className="icon">
       <Basket />
-      {nbr}
+      <span className="nbr">{nbr}</span>
     </div>
   )
 }
