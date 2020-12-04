@@ -67,15 +67,18 @@
           .plus {
             margin-left: 5px;
           }
-          .delete {
-            position: absolute;
-            left: 100%;
-            background-color: var(--secondGrey);
-          }
         }
       }
       td:last-child {
         font-weight: 700;
+        text-align: right;
+        .delete {
+          width: 20px;
+          height: 20px;
+          line-height: 20px;
+          margin-top: 5px;
+          background-color: var(--secondGrey);
+        }
       }
     }
     tr:first-child {
@@ -106,6 +109,9 @@
           background-color: var(--secondGrey);
           z-index: -1;
         }
+      }
+      td + td {
+        text-align: right;
       }
     }
   }

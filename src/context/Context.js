@@ -36,6 +36,11 @@ const Provider = props => {
   // objToCheck
   const objToCheck = panier[panier.length - 1]
 
+  //mobileMenu
+  const [mobileMenu, setMobileMenu] = useState(0)
+  //mobileMenu
+  const [mobilePanier, setMobilePanier] = useState(0)
+
   // tmp array
   let tmp = [...panier]
   tmp.splice(tmp.length - 1, 1)
@@ -74,6 +79,8 @@ const Provider = props => {
         service,
         mode,
         adrs,
+        mobileMenu,
+        mobilePanier,
         changePanier: (
           nom,
           tailleName,
@@ -101,6 +108,11 @@ const Provider = props => {
           ),
         // livraison ou emporter
         changeService: type => setService(service => type),
+        // changeMobileMenu
+        changeMobileMenu: () => setMobileMenu(mobileMenu => !mobileMenu),
+        // changeMobileMenu
+        changeMobilePanier: () =>
+          setMobilePanier(mobilePanier => !mobilePanier),
         // adrs
         changeAdrs: element => setAdrs(adrs => element),
         // delete element de panier

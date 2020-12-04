@@ -112,6 +112,11 @@ const Panier = () => {
                         >
                           +
                         </button>
+                      </div>
+                    </td>
+                    <td>
+                      {item.total} €
+                      <div>
                         <button
                           onClick={() => deleteItem(index)}
                           className="delete btn"
@@ -120,7 +125,6 @@ const Panier = () => {
                         </button>
                       </div>
                     </td>
-                    <td>{item.total} €</td>
                   </tr>
                 )
               })

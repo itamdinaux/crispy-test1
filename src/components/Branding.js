@@ -6,14 +6,14 @@ import Mobile from "../components/Mobile/Mobile"
 import Phone from "../components/Branding/Phone"
 //css
 import "../css/branding.scss"
-const Branding = ({ location }) => {
+const Branding = () => {
   return (
     <div className="brandingWrapper">
       <div className="branding container">
         <div className="flex flex-space">
           <Logo theme="sombre" />
           <MainMenu />
-          <Mobile location={location} />
+          <Mobile />
           <Phone />
         </div>
       </div>

@@ -1,8 +1,9 @@
 /* mode + service */
 .mode {
-  width: 60%;
+  width: 90%;
   margin: 0 auto;
   margin-top: -40px;
+
   .modeHeader {
     position: relative;
     z-index: 111;
@@ -77,15 +78,23 @@
     }
   }
 }
+/* narrow */
+@media screen and (min-width: 740px) {
+  .mode {
+    width: 60%;
+  }
+}
 /* signature */
 .signature {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--whiteColor);
   border: 1px solid var(--thirdGrey);
-  width: calc(50% - 40px);
+  width: calc(90% - 40px);
   margin: 20px auto;
   padding: 20px;
+  text-align: center;
   .logo,
   &:after {
     width: 100px;
@@ -114,6 +123,7 @@
     button {
       display: block;
       text-decoration: underline;
+      margin: 0 auto;
     }
     .horaire {
       overflow: hidden;
@@ -147,6 +157,31 @@
         text-decoration: none;
       }
     }
+  }
+}
+/* little */
+@media screen and (min-width: 500px) {
+  .signature {
+    width: calc(100% - 80px);
+  }
+}
+/* narrow */
+@media screen and (min-width: 740px) {
+  .signature {
+    width: calc(80% - 40px);
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    button {
+      margin: inherit !important;
+    }
+  }
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+  .signature {
+    width: calc(50% - 40px);
   }
 }
 
