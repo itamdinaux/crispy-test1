@@ -81,7 +81,13 @@
 /* narrow */
 @media screen and (min-width: 740px) {
   .mode {
-    width: 60%;
+    width: 80%;
+  }
+}
+/* normal */
+@media screen and (min-width: 980px) {
+  .mode {
+    width: 50%;
   }
 }
 /* signature */
@@ -154,7 +160,11 @@
       a {
         font-weight: 700;
         color: var(--blackColor);
+        background-color: var(--mainColor);
+        padding: 5px 10px;
         text-decoration: none;
+
+        display: inline-block;
       }
     }
   }

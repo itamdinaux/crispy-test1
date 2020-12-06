@@ -1,14 +1,15 @@
 .pizzaOption {
   .contentMain {
     display: flex;
+    flex-direction: column;
     background-color: var(--whiteColor);
     .bgPizza {
-      width: 50%;
-      height: 100%;
-      min-height: 70vh;
+      width: 10 0%;
+      height: 150px;
+      margin-top: 10px;
     }
     .contentPizza {
-      width: calc(50% - 20px);
+      width: calc(100% - 20px);
       padding: 10px;
       h1 {
         font-weight: 700;
@@ -146,6 +147,26 @@
     }
   }
 }
+.pizzaOption {
+  /* narrow */
+  @media screen and (min-width: 740px) {
+    .contentMain {
+      flex-direction: row;
+      .bgPizza {
+        width: 50%;
+        height: 100%;
+        min-height: 70vh;
+        margin-left: -10px;
+        margin-top: 0px;
+      }
+      .contentPizza {
+        width: calc(50% - 20px);
+        padding: 20px;
+      }
+    }
+  }
+}
+
 /* boisson */
 .boisson {
   .action {
@@ -162,6 +183,7 @@
     }
   }
 }
+
 /* little */
 @media screen and (min-width: 500px) {
 }
