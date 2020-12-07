@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import { Link, navigate } from "gatsby"
+import { Link, navigate, graphql } from "gatsby"
 //components
 import Livraison from "../components/Commande/Livraison"
 import Emporter from "../components/Commande/Emporter"
@@ -17,7 +17,8 @@ const Commande = ({ data }) => {
   let total = 0
   if (typeof window !== "undefined") {
     commande.panier.map(item => {
-      total = total + item.basePrice * item.quantity
+      console.log(context)
+      total = total + (item.basePrice + item.supSum) * item.quantity
       return true
     })
   }
