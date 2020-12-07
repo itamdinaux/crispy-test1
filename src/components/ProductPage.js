@@ -35,37 +35,39 @@ const ProductPage = ({ data, type }) => {
     )
   }
   return (
-    <div className={`container product`}>
-      <div className="contentSide">
-        <div className="contentMain">
-          {data.c.nodes.map((item, index) => {
-            return (
-              <div key={index} className={`productOne`}>
-                <BackgroundImage
-                  fluid={item.image.fluid}
-                  className="bgProduct"
-                />
-                <h2>{item.title}</h2>
-                <p className="dsc">{item.description.description}</p>
-                <div className="price">
-                  à partir de <span>{item.prix} €</span>
-                  <div className="more">+</div>
+    <>
+      <div className={`container product`}>
+        <div className="contentSide">
+          <div className="contentMain">
+            {data.c.nodes.map((item, index) => {
+              return (
+                <div key={index} className={`productOne`}>
+                  <BackgroundImage
+                    fluid={item.image.fluid}
+                    className="bgProduct"
+                  />
+                  <h2>{item.title}</h2>
+                  <p className="dsc">{item.description.description}</p>
+                  <div className="price">
+                    à partir de <span>{item.prix} €</span>
+                    <div className="more">+</div>
+                  </div>
+                  <button
+                    to={`/pizza/${item.slug}`}
+                    onClick={() => addPanier(item.title, item.prix, 1)}
+                  >
+                    aller aux options
+                  </button>
                 </div>
-                <button
-                  to={`/pizza/${item.slug}`}
-                  onClick={() => addPanier(item.title, item.prix, 1)}
-                >
-                  aller aux options
-                </button>
-              </div>
-            )
-          })}
-        </div>
-        <div className="sideBar">
-          <Panier /> <Time />
+              )
+            })}
+          </div>
+          <div className="sideBar">
+            <Panier /> <Time />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

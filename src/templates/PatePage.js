@@ -1,13 +1,38 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql } from "gatsby"
 
 //component
 import ProductPage from "../components/ProductPage"
+// seo
+import SEO from "../components/SEO"
 //css
 import "../css/productPage.scss"
-//data
-const getData = graphql`
-  {
+
+const PatePage = ({ data }) => {
+  return (
+    <>
+      <SEO
+        title={data.d.title}
+        dsc={data.d.metaDsc.metaDsc}
+        img={data.d.metaImg.fixed.src}
+      />
+      <ProductPage data={data} type="pate" />
+    </>
+  )
+}
+export const query = graphql`
+  query($id: String) {
+    d: contentfulTypeProduct(id: { eq: $id }) {
+      title
+      metaDsc {
+        metaDsc
+      }
+      metaImg {
+        fixed {
+          src
+        }
+      }
+    }
     c: allContentfulPate(sort: { fields: order, order: ASC }) {
       nodes {
         title
@@ -25,10 +50,5 @@ const getData = graphql`
     }
   }
 `
-const PatePage = () => {
-  const data = useStaticQuery(getData)
-
-  return <ProductPage data={data} type="pate" />
-}
 
 export default PatePage

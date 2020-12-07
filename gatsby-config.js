@@ -13,6 +13,8 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
+    `gatsby-plugin-react-helmet`,
+
     {
       resolve: `gatsby-source-contentful`,
       options: {
@@ -25,13 +27,12 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `icon`,
-        path: `${__dirname}/src/assets/icon`,
+        name: `assets`,
+        path: `${__dirname}/src/assets/`,
       },
     },
     {
       resolve: "gatsby-plugin-react-svg",
-      
     },
     {
       resolve: `gatsby-plugin-layout`,

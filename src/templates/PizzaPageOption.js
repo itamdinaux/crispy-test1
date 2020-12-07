@@ -6,7 +6,8 @@ import { navigate } from "gatsby"
 //components
 import Panier from "../components/Panier"
 import Time from "../components/Branding/Time"
-
+// seo
+import SEO from "../components/SEO"
 //context
 import { Context } from "../context/Context"
 //css
@@ -68,139 +69,149 @@ const PizzaPage = ({ data }) => {
   }, [context, total])
 
   return (
-    <div className={`container pizzaOption `}>
-      <div className="fullWidth return">
-        <Link to="/pizza">Retour</Link>
-      </div>
-      <div className="contentSide">
-        <div className="contentMain">
-          <BackgroundImage fluid={data.c.image.fluid} className="bgPizza" />
-          <div className="contentPizza">
-            <h1>{data.c.title}</h1>
-            <p>{data.c.description.description}</p>
+    <>
+      <SEO
+        title={data.c.title}
+        dsc={data.c.metaDsc.metaDsc}
+        img={data.c.image.fixed.src}
+      />
+      <div className={`container pizzaOption `}>
+        <div className="fullWidth return">
+          <Link to="/pizza">Retour</Link>
+        </div>
+        <div className="contentSide">
+          <div className="contentMain">
+            <BackgroundImage fluid={data.c.image.fluid} className="bgPizza" />
+            <div className="contentPizza">
+              <h1>{data.c.title}</h1>
+              <p>{data.c.description.description}</p>
 
-            <h2>
-              Taille
-              {taille ? (
-                <button onClick={() => reset()}>Réinitialiser</button>
-              ) : (
-                ""
-              )}
-            </h2>
-            <div className="taille">
-              <button
-                onClick={() => setTaille(taille => 1)}
-                disabled={taille ? true : false}
-                className={`taille active-${taille === 1 ? "true" : "false"}`}
-              >
-                Regular (30cm)<span>{data.c.prixRegular} €</span>
-              </button>
-              <button
-                onClick={() => setTaille(taille => 2)}
-                disabled={taille ? true : false}
-                className={`taille active-${taille === 2 ? "true" : "false"}`}
-              >
-                Maxi (40cm)<span>{data.c.prixMaxi} €</span>
-              </button>
-            </div>
+              <h2>
+                Taille
+                {taille ? (
+                  <button onClick={() => reset()}>Réinitialiser</button>
+                ) : (
+                  ""
+                )}
+              </h2>
+              <div className="taille">
+                <button
+                  onClick={() => setTaille(taille => 1)}
+                  disabled={taille ? true : false}
+                  className={`taille active-${taille === 1 ? "true" : "false"}`}
+                >
+                  Regular (30cm)<span>{data.c.prixRegular} €</span>
+                </button>
+                <button
+                  onClick={() => setTaille(taille => 2)}
+                  disabled={taille ? true : false}
+                  className={`taille active-${taille === 2 ? "true" : "false"}`}
+                >
+                  Maxi (40cm)<span>{data.c.prixMaxi} €</span>
+                </button>
+              </div>
 
-            {taille !== 0 ? (
-              <>
-                <h2>Supplément sélectionné</h2>
-                {supp ? (
-                  <div className="supSelect">
-                    {supp.map((item, index) => {
+              {taille !== 0 ? (
+                <>
+                  <h2>Supplément sélectionné</h2>
+                  {supp ? (
+                    <div className="supSelect">
+                      {supp.map((item, index) => {
+                        return (
+                          <div key={index} className="element">
+                            {item.name} <span>+{item.price}€</span>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  ) : (
+                    <div className="supSelect">Aucun</div>
+                  )}
+                  <h2>Supplément</h2>
+                  <div className={`supp cat-${catSup}`}>
+                    {data.d.nodes.map((item, index) => {
                       return (
-                        <div key={index} className="element">
-                          {item.name} <span>+{item.price}€</span>
+                        <div
+                          key={index}
+                          className={`cat-${index + 1} catTitle`}
+                        >
+                          <button
+                            onClick={() => category(index + 1)}
+                            className="cat"
+                          >
+                            {item.title}
+                            <span>
+                              {taille === 1
+                                ? item.prixRegular + "€/p"
+                                : taille === 2
+                                ? item.prixMaxi + "€/p"
+                                : ""}
+                            </span>
+                          </button>
+                          <div className="suppList">
+                            {item.supplement.map((item, index) => {
+                              return (
+                                <button
+                                  key={index}
+                                  onClick={
+                                    taille === 1
+                                      ? () =>
+                                          setSupp(supp => [
+                                            ...supp,
+                                            {
+                                              name: item.title,
+                                              price: item.type.prixRegular,
+                                            },
+                                          ])
+                                      : () =>
+                                          setSupp(supp => [
+                                            ...supp,
+                                            {
+                                              name: item.title,
+                                              price: item.type.prixMaxi,
+                                            },
+                                          ])
+                                  }
+                                >
+                                  {item.title}
+                                </button>
+                              )
+                            })}
+                          </div>
                         </div>
                       )
                     })}
                   </div>
-                ) : (
-                  <div className="supSelect">Aucun</div>
-                )}
-                <h2>Supplément</h2>
-                <div className={`supp cat-${catSup}`}>
-                  {data.d.nodes.map((item, index) => {
-                    return (
-                      <div key={index} className={`cat-${index + 1} catTitle`}>
-                        <button
-                          onClick={() => category(index + 1)}
-                          className="cat"
-                        >
-                          {item.title}
-                          <span>
-                            {taille === 1
-                              ? item.prixRegular + "€/p"
-                              : taille === 2
-                              ? item.prixMaxi + "€/p"
-                              : ""}
-                          </span>
-                        </button>
-                        <div className="suppList">
-                          {item.supplement.map((item, index) => {
-                            return (
-                              <button
-                                key={index}
-                                onClick={
-                                  taille === 1
-                                    ? () =>
-                                        setSupp(supp => [
-                                          ...supp,
-                                          {
-                                            name: item.title,
-                                            price: item.type.prixRegular,
-                                          },
-                                        ])
-                                    : () =>
-                                        setSupp(supp => [
-                                          ...supp,
-                                          {
-                                            name: item.title,
-                                            price: item.type.prixMaxi,
-                                          },
-                                        ])
-                                }
-                              >
-                                {item.title}
-                              </button>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </>
-            ) : (
-              ""
-            )}
+                </>
+              ) : (
+                ""
+              )}
 
-            <div className="action">
-              <button
-                disabled={taille ? false : true}
-                onClick={() =>
-                  result(
-                    data.c.title,
-                    taille === 1 ? "Regular" : "Maxi",
-                    choiceTaille[taille - 1],
-                    supp ? supp : 0,
-                    1,
-                    t
-                  )
-                }
-              >
-                Ajouter au panier
-              </button>
+              <div className="action">
+                <button
+                  disabled={taille ? false : true}
+                  onClick={() =>
+                    result(
+                      data.c.title,
+                      taille === 1 ? "Regular" : "Maxi",
+                      choiceTaille[taille - 1],
+                      supp ? supp : 0,
+                      1,
+                      t
+                    )
+                  }
+                >
+                  Ajouter au panier
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="sideBar">
-          <Panier /> <Time />
+          <div className="sideBar">
+            <Panier /> <Time />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -217,6 +228,12 @@ export const query = graphql`
         fluid {
           ...GatsbyContentfulFluid
         }
+        fixed {
+          src
+        }
+      }
+      metaDsc {
+        metaDsc
       }
     }
     d: allContentfulSupplementPrix(

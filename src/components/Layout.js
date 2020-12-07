@@ -16,19 +16,21 @@ const Layout = ({ children, pageContext, location }) => {
   const pageLayout = "home"
   if (location.pathname === "/") {
     return (
-      <div
-        className={`layout layout-${
-          pageContext.type !== undefined
-            ? pageContext.type
-            : pageLayout
-            ? pageLayout
-            : "other"
-        }`}
-      >
-        <BrandingHome />
-        <div className="mainContent">{children}</div>
-        <Footer />
-      </div>
+      <>
+        <div
+          className={`layout layout-${
+            pageContext.type !== undefined
+              ? pageContext.type
+              : pageLayout
+              ? pageLayout
+              : "other"
+          }`}
+        >
+          <BrandingHome />
+          <div className="mainContent">{children}</div>
+          <Footer />
+        </div>
+      </>
     )
   } else {
     return (

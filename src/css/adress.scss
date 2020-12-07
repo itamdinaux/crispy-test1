@@ -13,10 +13,17 @@
         display: flex;
         p {
           margin-right: 5px;
+          padding: 0px 10px;
           strong {
             margin-right: 5px;
             font-weight: 700;
             text-transform: lowercase;
+          }
+        }
+        /* narrow */
+        @media screen and (min-width: 740px) {
+          p {
+            padding: 0px;
           }
         }
         .adrs {
