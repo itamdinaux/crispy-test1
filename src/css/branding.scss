@@ -42,8 +42,8 @@
 .branding {
   .logo,
   .bgLogo {
-    width: 75px !important;
-    height: 75px !important;
+    width: 150px !important;
+    height: 150px !important;
   }
   .logo {
     margin-bottom: 20px;
@@ -51,6 +51,11 @@
   @media screen and (min-width: 740px) {
     .logo {
       margin-bottom: 0px;
+    }
+    .logo,
+    .bgLogo {
+      width: 75px !important;
+      height: 75px !important;
     }
   }
 }

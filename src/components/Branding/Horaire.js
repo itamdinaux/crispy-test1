@@ -34,7 +34,7 @@ const Horaire = () => {
     <div className="horaire">
       <h2>{mode ? "Le restaurant est ouvert" : "Le restaurant est fermé"}</h2>
       <button onClick={() => show()}>
-        {horaire ? "masquer les horaires" : "montrer les horaires"}
+        {horaire ? "masquer nos horaires" : "voir nos horaires"}
       </button>
       {horaire ? (
         <div className="table">

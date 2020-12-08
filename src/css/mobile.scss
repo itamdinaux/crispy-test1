@@ -136,15 +136,18 @@
 
   .mobilePanier {
     position: fixed;
-    z-index: 999;
+    z-index: 999999;
     bottom: -100%;
     left: 0px;
+    min-height: 100%;
     height: 100%;
     width: 100%;
     background-color: var(--firstGrey);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
+
     .content {
       display: flex;
       align-items: center;

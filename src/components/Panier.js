@@ -141,8 +141,7 @@ const Panier = () => {
           commande.panier.length !== 0 ? (
             <tfoot>
               <tr>
-                <td>Total</td>
-                <td>{calculTotal} €</td>
+                <td colSpan="2">Total : {calculTotal} €</td>
               </tr>
             </tfoot>
           ) : (

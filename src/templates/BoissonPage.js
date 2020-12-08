@@ -56,20 +56,31 @@ const BoissonPage = ({ data }) => {
                     className="bgProduct"
                   />
                   <h2>{item.title}</h2>
-                  <div className="price">
-                    à partir de <span>{item.prixRegular} €</span>
-                    <div className="more">+</div>
-                  </div>
+
                   {item.type.length > 1 ? (
-                    <Link to={`/boisson/${item.slug}`}>aller aux options</Link>
+                    <>
+                      <div className="price">
+                        à partir de <span>{item.prixRegular} €</span>
+                        <div className="more">+</div>
+                      </div>
+                      <Link to={`/boisson/${item.slug}`}>
+                        aller aux options
+                      </Link>
+                    </>
                   ) : (
-                    <button
-                      onClick={() =>
-                        addPanier(item.title, item.prixRegular, 1, "33cl", t)
-                      }
-                    >
-                      aller aux options
-                    </button>
+                    <>
+                      <div className="price">
+                        à <span>{item.prixRegular} €</span>
+                        <div className="more">+</div>
+                      </div>
+                      <button
+                        onClick={() =>
+                          addPanier(item.title, item.prixRegular, 1, "33cl", t)
+                        }
+                      >
+                        aller aux options
+                      </button>
+                    </>
                   )}
                 </div>
               )

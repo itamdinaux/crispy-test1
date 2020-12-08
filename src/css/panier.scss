@@ -18,9 +18,7 @@
 .panier {
   width: 100%;
   /* global */
-  td:first-child {
-    width: 80%;
-  }
+
   td {
     padding: 10px 0px;
   }
@@ -104,20 +102,18 @@
         z-index: 1;
         font-weight: 700;
         text-align: right;
-
+      }
+      td:first-child {
         &:before {
           content: "";
+          background: var(--secondGrey);
+          z-index: -1;
           position: absolute;
-          top: 0px;
+          top: 0%;
           left: -20px;
           width: calc(100% + 40px);
           height: 100%;
-          background-color: var(--secondGrey);
-          z-index: -1;
         }
-      }
-      td:first-child {
-        z-index: 99;
       }
     }
   }

@@ -49,7 +49,7 @@ const ProductPage = ({ data, type }) => {
                   <h2>{item.title}</h2>
                   <p className="dsc">{item.description.description}</p>
                   <div className="price">
-                    à partir de <span>{item.prix} €</span>
+                    à <span>{item.prix} €</span>
                     <div className="more">+</div>
                   </div>
                   <button
