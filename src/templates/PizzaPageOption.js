@@ -239,8 +239,6 @@ export const query = graphql`
     ) {
       nodes {
         title
-        prixMaxi
-        prixRegular
         supplement {
           title
           priceMaxi
