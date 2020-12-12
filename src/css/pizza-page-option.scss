@@ -75,42 +75,33 @@
             margin-bottom: -1px;
             padding: 5px;
             font-size: 0.9em;
+            display: flex;
+            justify-content: space-between;
+            span {
+              font-weight: bolder;
+              font-size: 0.75em;
+            }
           }
         }
       }
       /* display: supp */
-      .cat-0,
-      .cat-1,
-      .cat-2,
-      .cat-3 {
-        .catTitle {
-          .suppList {
-            display: none;
+
+      @for $i from 0 through 100 {
+        .cat-#{$i} {
+          .catTitle {
+            .suppList {
+              display: none;
+            }
           }
-        }
-      }
-      .cat-1 {
-        .catTitle.cat-1 {
-          .suppList {
-            display: block;
-          }
-        }
-      }
-      .cat-2 {
-        .catTitle.cat-2 {
-          .suppList {
-            display: block;
-          }
-        }
-      }
-      .cat-3 {
-        .catTitle.cat-3 {
-          .suppList {
-            display: block;
+          .catTitle.cat-#{$i} {
+            .suppList {
+              display: block;
+            }
           }
         }
       }
     }
+
     /* supp choix */
     .supSelect {
       display: flex;

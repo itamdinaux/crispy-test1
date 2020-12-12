@@ -1,0 +1,58 @@
+.promoPage {
+  .flex {
+    flex-direction: column;
+    .promo {
+      margin-bottom: 20px;
+      .bgPromo {
+        .contentPromo {
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 50px;
+          color: var(--mainColor);
+          h3 {
+            font-size: 2em;
+            font-weight: bolder;
+          }
+          .dsc {
+            font-size: 1.5em;
+            color: var(--whiteColor);
+          }
+          .validity {
+            background-color: var(--whiteColor);
+            font-size: 1em;
+            color: var(--blackColor);
+            width: fit-content;
+            padding: 5px;
+            font-size: 0.75em;
+            margin-top: 5px;
+            span {
+              &:after {
+                content: ",";
+                margin-right: 5px;
+              }
+            }
+            span:last-child {
+              &:after {
+                content: "";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* little */
+@media screen and (min-width: 500px) {
+}
+
+/* narrow */
+@media screen and (min-width: 740px) {
+}
+
+/* normal */
+@media screen and (min-width: 980px) {
+}
+
+/* wide */
+@media screen and (min-width: 1200px) {
+}

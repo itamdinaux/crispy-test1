@@ -140,13 +140,6 @@ const PizzaPage = ({ data }) => {
                             className="cat"
                           >
                             {item.title}
-                            <span>
-                              {taille === 1
-                                ? item.prixRegular + "€/p"
-                                : taille === 2
-                                ? item.prixMaxi + "€/p"
-                                : ""}
-                            </span>
                           </button>
                           <div className="suppList">
                             {item.supplement.map((item, index) => {
@@ -160,7 +153,7 @@ const PizzaPage = ({ data }) => {
                                             ...supp,
                                             {
                                               name: item.title,
-                                              price: item.type.prixRegular,
+                                              price: item.priceRegular,
                                             },
                                           ])
                                       : () =>
@@ -168,12 +161,17 @@ const PizzaPage = ({ data }) => {
                                             ...supp,
                                             {
                                               name: item.title,
-                                              price: item.type.prixMaxi,
+                                              price: item.priceMaxi,
                                             },
                                           ])
                                   }
                                 >
                                   {item.title}
+                                  {taille === 1 ? (
+                                    <span>+{item.priceRegular}€</span>
+                                  ) : (
+                                    <span>+{item.priceMaxi}€</span>
+                                  )}
                                 </button>
                               )
                             })}
@@ -236,7 +234,7 @@ export const query = graphql`
         metaDsc
       }
     }
-    d: allContentfulSupplementPrix(
+    d: allContentfulSupplementType(
       sort: { fields: [order, supplement___title], order: ASC }
     ) {
       nodes {
@@ -245,10 +243,8 @@ export const query = graphql`
         prixRegular
         supplement {
           title
-          type {
-            prixMaxi
-            prixRegular
-          }
+          priceMaxi
+          priceRegular
         }
       }
     }

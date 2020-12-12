@@ -19,11 +19,19 @@ const MainMenu = () => {
       {data.c.nodes.map((item, index) => {
         return (
           <li key={index}>
-            <Link to={`/${item.slug}`} activeClassName="active"
-                partiallyActive={true}>{item.title}</Link>
+            <Link
+              to={`/${item.slug}`}
+              activeClassName="active"
+              partiallyActive={true}
+            >
+              {item.title}
+            </Link>
           </li>
         )
       })}
+      <li>
+        <Link to="/promo">Promo</Link>
+      </li>
     </ul>
   )
 }

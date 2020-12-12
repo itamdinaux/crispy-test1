@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"
 //components
 import ButtonCommand from "../components/Commande/ButtonCommande"
+import PromoTable from "../components/Promo/PromoTable"
 //context
 import { Context } from "../context/Context"
 //css
@@ -139,11 +140,14 @@ const Panier = () => {
         </tbody>
         {typeof window !== "undefined" ? (
           commande.panier.length !== 0 ? (
-            <tfoot>
-              <tr>
-                <td colSpan="2">Total : {calculTotal} €</td>
-              </tr>
-            </tfoot>
+            <>
+              <tfoot>
+                <tr>
+                  <td colSpan="2">Total : {calculTotal} €</td>
+                </tr>
+              </tfoot>
+              <PromoTable context={context} />
+            </>
           ) : (
             <></>
           )

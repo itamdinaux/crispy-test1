@@ -76,6 +76,11 @@ const Mobile = () => {
             </li>
           )
         })}
+        <li>
+          <Link to="/promo" onClick={() => changeMenu()}>
+            Promo
+          </Link>
+        </li>
       </ul>
       <button className="mobileButtonPanier" onClick={() => changePanier()}>
         Votre commande
