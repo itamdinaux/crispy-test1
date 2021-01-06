@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"
 //components
 import ButtonCommand from "../components/Commande/ButtonCommande"
-import PromoTable from "../components/Promo/PromoTable"
+//import PromoTable from "../components/Promo/PromoTable"
 //context
 import { Context } from "../context/Context"
 //css
@@ -12,15 +12,15 @@ const Panier = () => {
   const [service, setService] = useState(0)
 
   const [commande, setCommande] = useState(context)
-  const [calculTotal, setCalculTotal] = useState(0)
+  //const [calculTotal, setCalculTotal] = useState(0)
 
   useEffect(() => {
     setService(service => context.service)
     setCommande(commande => context)
     //calcul Total
-    setCalculTotal(0)
+    //setCalculTotal(0)
     commande.panier.map(item => {
-      setCalculTotal(calculTotal => calculTotal + item.total)
+      //setCalculTotal(calculTotal => calculTotal + item.total)
       return false
     })
   }, [context, commande])
@@ -141,12 +141,14 @@ const Panier = () => {
         {typeof window !== "undefined" ? (
           commande.panier.length !== 0 ? (
             <>
+              {/*}
               <tfoot>
                 <tr>
                   <td colSpan="2">Total : {calculTotal} €</td>
                 </tr>
               </tfoot>
               <PromoTable context={context} />
+              {*/}
             </>
           ) : (
             <></>

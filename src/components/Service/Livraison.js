@@ -54,7 +54,7 @@ const Livraison = () => {
   //AUTOCOMPLETE
 
   const [valide, setValide] = useState(0)
-  const maxDistance = 5000
+  const maxDistance = mydata.c.distanceLivraison
 
   const {
     ready,
