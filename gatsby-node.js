@@ -26,7 +26,22 @@ exports.createPages = async ({ graphql, actions }) => {
           id
         }
       }
+      pate: allContentfulPate {
+        nodes {
+          slug
+          title
+          id
+        }
+      }
       boisson: allContentfulBoisson {
+        nodes {
+          slug
+          type
+          title
+          id
+        }
+      }
+      snacking: allContentfulSnacking {
         nodes {
           slug
           type
@@ -87,6 +102,16 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       })
     }
+    if (page.slug === "snacking") {
+      createPage({
+        path: `/${page.slug}`,
+        component: path.resolve(`./src/templates/SnackingPage.js`),
+        context: {
+          id: page.id,
+          type: "productPage",
+        },
+      })
+    }
     if (page.slug === "dessert") {
       createPage({
         path: `/${page.slug}`,
@@ -118,16 +143,43 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+
+  /*
   result.data.boisson.nodes.forEach(boisson => {
-    if(boisson.type.length >1){
+    if (boisson.type.length > 1) {
+      createPage({
+        path: `/boisson/${boisson.slug}`,
+        component: path.resolve(`./src/templates/BoissonPageOption.js`),
+        context: {
+          id: boisson.id,
+          type: "boissonOption",
+        },
+      })
+    }
+  })
+*/
+
+  result.data.snacking.nodes.forEach(snacking => {
+    if (snacking.type.length > 1) {
+      createPage({
+        path: `/snacking/${snacking.slug}`,
+        component: path.resolve(`./src/templates/SnackingPageOption.js`),
+        context: {
+          id: snacking.id,
+          type: "snackingOption",
+        },
+      })
+    }
+  })
+
+  result.data.pate.nodes.forEach(pate => {
     createPage({
-      path: `/boisson/${boisson.slug}`,
-      component: path.resolve(`./src/templates/BoissonPageOption.js`),
+      path: `/pate/${pate.slug}`,
+      component: path.resolve(`./src/templates/PatePageOption.js`),
       context: {
-        id: boisson.id,
-        type: "boissonOption",
+        id: pate.id,
+        type: "pateOption",
       },
     })
-    }
   })
 }

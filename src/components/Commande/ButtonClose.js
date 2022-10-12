@@ -17,7 +17,9 @@ const ButtonClose = () => {
   }
   return (
     <div className="buttonCommande">
-      <button onClick={() => change()}>Restaurant fermé</button>
+      <button onClick={() => change()}>
+        Consulter les horaires d'ouverture
+      </button>
     </div>
   )
 }

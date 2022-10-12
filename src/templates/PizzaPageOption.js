@@ -68,13 +68,20 @@ const PizzaPage = ({ data }) => {
     }
   }, [context, total])
 
+  // rewrite metaTitle
+  const metaTitleTable = data.e.pizzaMetaTitle.split(" ")
+  const metaDscTable = data.e.pizzaMetaDsc.pizzaMetaDsc.split(" ")
+  const findName = e => e === "[*]"
+  const metaTitleIndex = metaTitleTable.findIndex(findName)
+  const metaDscIndex = metaDscTable.findIndex(findName)
+  metaTitleTable[metaTitleIndex] = data.c.title
+  metaDscTable[metaDscIndex] = data.c.title
+  const metaTitle = metaTitleTable.join(" ")
+  const metaDsc = metaDscTable.join(" ")
+
   return (
     <>
-      <SEO
-        title={data.c.title}
-        dsc={data.c.metaDsc.metaDsc}
-        img={data.c.image.fixed.src}
-      />
+      <SEO title={metaTitle} dsc={metaDsc} img={data.c.image.fixed.src} />
       <div className={`container pizzaOption `}>
         <div className="fullWidth return">
           <Link to="/pizza">Retour</Link>
@@ -230,9 +237,6 @@ export const query = graphql`
           src
         }
       }
-      metaDsc {
-        metaDsc
-      }
     }
     d: allContentfulSupplementType(
       sort: { fields: [order, supplement___title], order: ASC }
@@ -244,6 +248,12 @@ export const query = graphql`
           priceMaxi
           priceRegular
         }
+      }
+    }
+    e: contentfulConfig {
+      pizzaMetaTitle
+      pizzaMetaDsc {
+        pizzaMetaDsc
       }
     }
   }

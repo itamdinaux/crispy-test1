@@ -4,6 +4,7 @@ import BackgroundImage from "gatsby-background-image"
 //component
 import Horaire from "../Branding/Horaire"
 import Phone from "../Branding/Phone"
+import Closed from "../Service/Closed"
 //data
 const getData = graphql`
   {
@@ -18,7 +19,7 @@ const getData = graphql`
     }
   }
 `
-const Signature = () => {
+const Signature = ({ mode }) => {
   //data
   const data = useStaticQuery(getData)
 
@@ -29,7 +30,10 @@ const Signature = () => {
         <h1>{data.c.title}</h1>
         <p className="adrs">{data.c.adressText}</p>
         <Horaire />
-        <Phone />
+        <div className="box">
+          <Phone />
+          {mode ? "" : <Closed />}
+        </div>
       </div>
     </div>
   )

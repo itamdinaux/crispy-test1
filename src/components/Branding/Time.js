@@ -26,16 +26,19 @@ const Time = () => {
   //check if open
   const magOpen = data.c.ouverture ? OpenClose(data.c.horaire) : false
   const [mode] = useState(magOpen)
-  const [ouverture, setOuverture] = useState(0)
+  const [ouverture] = useState(1)
   return (
     <>
       {mode ? (
         ""
       ) : (
         <div className="time">
+          {/*}
           <button onClick={() => setOuverture(ouverture => !ouverture)}>
             voir les horaires d'ouverture
           </button>
+          {*/}
+          <h2 className="title">Horaire d'ouverture</h2>
           {ouverture ? (
             <div className="table">
               {data.c.horaire.map((item, index) => {

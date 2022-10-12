@@ -4,7 +4,6 @@ import { graphql } from "gatsby"
 
 import Livraison from "../components/Service/Livraison"
 import Emporter from "../components/Service/Emporter"
-import Closed from "../components/Service/Closed"
 import Signature from "../components/Branding/Signature"
 // seo
 import SEO from "../components/SEO"
@@ -24,13 +23,11 @@ const Index = ({ data }) => {
       setMode(mode => context.mode)
     }
   }, [context])
-
   const [service, setService] = useState(0)
-
   return (
     <>
       <SEO
-        title="Accueil"
+        title={data.c.metaTitle}
         dsc={data.c.siteDsc.siteDsc}
         img={data.c.homeImage.fixed.src}
       />
@@ -59,16 +56,14 @@ const Index = ({ data }) => {
           <div className={`mode ${mode ? "open" : "closed"}`}>
             <div className="modeHeader">
               <button className={`active-${service ? "true" : "false"}`}>
-                Le restaurant est fermé
+                {data.c.title}
               </button>
             </div>
-            <div className="modeContent">
-              <Closed />
-            </div>
+            <div className="modeContent">{data.d.homeClose.homeClose}</div>
           </div>
         )}
 
-        <Signature />
+        <Signature mode={mode} />
       </div>
     </>
   )
@@ -77,6 +72,7 @@ export const query = graphql`
   query($id: String) {
     c: contentfulInfo(id: { eq: $id }) {
       title
+      metaTitle
       siteDsc {
         siteDsc
       }
@@ -84,6 +80,11 @@ export const query = graphql`
         fixed {
           src
         }
+      }
+    }
+    d: contentfulConfig {
+      homeClose {
+        homeClose
       }
     }
   }

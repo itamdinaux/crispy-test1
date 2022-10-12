@@ -71,7 +71,8 @@ const Panier = () => {
                       ) : (
                         ""
                       )}
-                      {item.nom} {item.tailleName}
+                      {item.nom}{" "}
+                      {item.tailleName ? "(" + item.tailleName + ")" : ""}
                       <div
                         className={`supp ${item.supList.map(item => {
                           if (item === "0") {

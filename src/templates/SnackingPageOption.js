@@ -15,7 +15,7 @@ import { Context } from "../context/Context"
 const BoissonPage = ({ data }) => {
   //context
   const context = useContext(Context)
-  const t = "boisson"
+  const t = "snacking"
 
   const result = (nom, tailleName, price, quantity, t) => {
     let supList = []
@@ -33,18 +33,25 @@ const BoissonPage = ({ data }) => {
       quantity,
       type
     )
-    navigate("/boisson")
+    navigate("/snacking")
   }
+  console.log(data)
+  // rewrite metaTitle
+  const metaTitleTable = data.e.snackingMetaTitle.split(" ")
+  const metaDscTable = data.e.snackingMetaDsc.snackingMetaDsc.split(" ")
+  const findName = e => e === "[*]"
+  const metaTitleIndex = metaTitleTable.findIndex(findName)
+  const metaDscIndex = metaDscTable.findIndex(findName)
+  metaTitleTable[metaTitleIndex] = data.c.title
+  metaDscTable[metaDscIndex] = data.c.title
+  const metaTitle = metaTitleTable.join(" ")
+  const metaDsc = metaDscTable.join(" ")
   return (
     <>
-      <SEO
-        title={data.c.title}
-        dsc={data.c.metaDsc.metaDsc}
-        img={data.c.image.fixed.src}
-      />
+      <SEO title={metaTitle} dsc={metaDsc} img={data.c.image.fixed.src} />
       <div className={`container pizzaOption boisson`}>
         <div className="fullWidth return">
-          <Link to="/boisson">Retour</Link>
+          <Link to="/snacking">Retour</Link>
         </div>
         <div className="contentSide">
           <div className="contentMain">
@@ -55,17 +62,23 @@ const BoissonPage = ({ data }) => {
               <div className="action ">
                 <button
                   onClick={() =>
-                    result(data.c.title, "33cl", data.c.prixRegular, 1, t)
+                    result(
+                      data.c.title,
+                      data.c.sizeRegular,
+                      data.c.prixRegular,
+                      1,
+                      t
+                    )
                   }
                 >
-                  33cl <span>{data.c.prixRegular}€</span>
+                  {data.c.sizeRegular} <span>{data.c.prixRegular}€</span>
                 </button>
                 <button
                   onClick={() =>
-                    result(data.c.title, "1,5l", data.c.prixMaxi, 1, t)
+                    result(data.c.title, data.c.sizeMaxi, data.c.prixMaxi, 1, t)
                   }
                 >
-                  1,5l <span>{data.c.prixMaxi} €</span>
+                  {data.c.sizeMaxi} <span>{data.c.prixMaxi} €</span>
                 </button>
               </div>
             </div>
@@ -81,10 +94,12 @@ const BoissonPage = ({ data }) => {
 
 export const query = graphql`
   query($id: String) {
-    c: contentfulBoisson(id: { eq: $id }) {
+    c: contentfulSnacking(id: { eq: $id }) {
       title
       prixRegular
       prixMaxi
+      sizeRegular
+      sizeMaxi
       image {
         fluid {
           ...GatsbyContentfulFluid
@@ -93,8 +108,11 @@ export const query = graphql`
           src
         }
       }
-      metaDsc {
-        metaDsc
+    }
+    e: contentfulConfig {
+      snackingMetaTitle
+      snackingMetaDsc {
+        snackingMetaDsc
       }
     }
   }

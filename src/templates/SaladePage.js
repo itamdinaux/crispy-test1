@@ -12,7 +12,7 @@ const SaladePage = ({ data }) => {
   return (
     <>
       <SEO
-        title={data.d.title}
+        title={data.d.metaTitle}
         dsc={data.d.metaDsc.metaDsc}
         img={data.d.metaImg.fixed.src}
       />
@@ -24,6 +24,7 @@ export const query = graphql`
   query($id: String) {
     d: contentfulTypeProduct(id: { eq: $id }) {
       title
+      metaTitle
       metaDsc {
         metaDsc
       }

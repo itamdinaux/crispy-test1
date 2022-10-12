@@ -13,8 +13,8 @@ const Promo = ({ data }) => {
   return (
     <>
       <SEO
-        title="Accueil"
-        dsc={data.c.siteDsc.siteDsc}
+        title={data.e.promoMetaTitle}
+        dsc={data.e.promoMetaDsc.promoMetaDsc}
         img={data.c.homeImage.fixed.src}
       />
       <div className="wrapper">
@@ -73,6 +73,12 @@ export const query = graphql`
           dsc
         }
         timeCondition
+      }
+    }
+    e: contentfulConfig {
+      promoMetaTitle
+      promoMetaDsc {
+        promoMetaDsc
       }
     }
   }

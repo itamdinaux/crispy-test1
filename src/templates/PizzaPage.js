@@ -13,37 +13,48 @@ const PizzaPage = ({ data }) => {
   const [trad, setTrad] = useState(0)
   const [spec, setSpec] = useState(0)
   const [blc, setBlc] = useState(0)
+  const [mer, setMer] = useState(0)
 
   const changeFiltre = filtre => {
     if (filtre === "trad") {
       setTrad(trad => 1)
       setSpec(spec => 0)
       setBlc(blc => 0)
+      setMer(mer => 0)
     } else if (filtre === "spec") {
       setTrad(trad => 0)
       setSpec(spec => 1)
       setBlc(blc => 0)
+      setMer(mer => 0)
     } else if (filtre === "blc") {
       setTrad(trad => 0)
       setSpec(spec => 0)
       setBlc(blc => 1)
+      setMer(mer => 0)
+    } else if (filtre === "mer") {
+      setTrad(trad => 0)
+      setSpec(spec => 0)
+      setBlc(blc => 0)
+      setMer(mer => 1)
     } else {
       setTrad(trad => 0)
       setSpec(spec => 0)
       setBlc(blc => 0)
+      setMer(mer => 0)
     }
   }
+  console.log(mer)
   return (
     <>
       <SEO
-        title={data.d.title}
+        title={data.d.metaTitle}
         dsc={data.d.metaDsc.metaDsc}
         img={data.d.metaImg.fixed.src}
       />
       <div
         className={`container product ${trad ? "traditionnelle" : ""} ${
           spec ? "speciale" : ""
-        } ${blc ? "blanche" : ""}`}
+        } ${blc ? "blanche" : ""} ${mer ? "mer" : ""}`}
       >
         <div className="fullWidth">
           Filtre :
@@ -66,7 +77,13 @@ const PizzaPage = ({ data }) => {
             >
               Blanche
             </button>
-            {trad || spec || blc ? (
+            <button
+              onClick={() => changeFiltre("mer")}
+              className={`active-${mer ? "true" : "false"}`}
+            >
+              De la mer
+            </button>
+            {trad || spec || blc || mer ? (
               <button onClick={() => changeFiltre()} className="delete">
                 x
               </button>
@@ -107,6 +124,7 @@ export const query = graphql`
   query($id: String) {
     d: contentfulTypeProduct(id: { eq: $id }) {
       title
+      metaTitle
       metaDsc {
         metaDsc
       }

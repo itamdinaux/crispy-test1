@@ -12,7 +12,7 @@ import { Context } from "../context/Context"
 import "../css/productPage.scss"
 
 const BoissonPage = ({ data }) => {
-  const t = "boisson"
+  const t = "snacking"
 
   //context
   const context = useContext(Context)
@@ -56,6 +56,11 @@ const BoissonPage = ({ data }) => {
                     className="bgProduct"
                   />
                   <h2>{item.title}</h2>
+                  {item.description ? (
+                    <p className="dsc">{item.description.description}</p>
+                  ) : (
+                    ""
+                  )}
 
                   {item.type.length > 1 ? (
                     <>
@@ -63,13 +68,12 @@ const BoissonPage = ({ data }) => {
                         à partir de <span>{item.prixRegular} €</span>
                         <div className="more">+</div>
                       </div>
-                      <Link to={`/boisson/${item.slug}`}>
+                      <Link to={`/snacking/${item.slug}`}>
                         aller aux options
                       </Link>
                     </>
                   ) : (
                     <>
-                      <p className="dsc">{item.sizeRegular}</p>
                       <div className="price">
                         à <span>{item.prixRegular} €</span>
                         <div className="more">+</div>
@@ -110,13 +114,15 @@ export const query = graphql`
         }
       }
     }
-    c: allContentfulBoisson(sort: { fields: order, order: ASC }) {
+    c: allContentfulSnacking(sort: { fields: order, order: ASC }) {
       nodes {
         title
         slug
         type
+        description {
+          description
+        }
         prixRegular
-        sizeRegular
         image {
           fluid {
             ...GatsbyContentfulFluid

@@ -113,7 +113,8 @@
 /* display: product */
 .traditionnelle,
 .speciale,
-.blanche {
+.blanche, 
+.mer {
   .productOne {
     display: none !important;
   }
@@ -132,7 +133,13 @@
   .blanche {
     display: flex !important;
   }
-} /* little */
+} 
+.mer {
+  .mer {
+    display: flex !important;
+  }
+}
+/* little */
 @media screen and (min-width: 500px) {
 }
 

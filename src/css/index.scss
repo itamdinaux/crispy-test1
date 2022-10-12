@@ -126,6 +126,18 @@
       font-size: 0.75em;
       line-height: 4em;
     }
+    h2.title{
+      color: var(--blackColor);
+      background-color: inherit;
+      text-transform: capitalize;
+      letter-spacing: 0px;
+      padding:0px;
+      font-weight:bolder;
+      font-size: 1em;
+      line-height:100%;
+      margin:20px 0px 10px;
+      display: block;
+    }
     button {
       display: block;
       text-decoration: underline;
@@ -156,17 +168,34 @@
         }
       }
     }
-    .phone {
-      a {
-        font-weight: 700;
-        color: var(--blackColor);
-        background-color: var(--mainColor);
-        padding: 5px 10px;
-        text-decoration: none;
+    .box{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+        .phone {
+          a {
+            font-weight: 700;
+            color: var(--blackColor);
+            background-color: var(--mainColor);
+            padding: 5px 10px;
+            text-decoration: none;
 
-        display: inline-block;
-      }
+            display: inline-block;
+          }
+        }
+        .closed{
+          margin-right:20px;
+          button{
+            background-color: var(--secondColor);
+            color: var(--mainColor);
+            text-decoration: none;
+            font-weight:bolder;
+            padding: 4px 10px;
+          }
+          
+        }
     }
+    
   }
 }
 /* little */

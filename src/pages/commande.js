@@ -22,14 +22,22 @@ const Commande = ({ data }) => {
       return true
     })
   }
-  const type = ["pain", "pizza", "pate", "salade", "dessert", "boisson"]
+  const type = [
+    "pain",
+    "pizza",
+    "pate",
+    "salade",
+    "snacking",
+    "dessert",
+    "boisson",
+  ]
   const selection = () => {
     navigate("/")
   }
   return (
     <>
       <SEO
-        title="Votre commande"
+        title="Commandez aujourd’hui dans Votre Pizzeria à Ramillies"
         dsc={data.c.siteDsc.siteDsc}
         img={data.c.homeImage.fixed.src}
       />
@@ -68,7 +76,10 @@ const Commande = ({ data }) => {
                                     ) : (
                                       false
                                     )}
-                                    {item.nom} {item.tailleName}
+                                    {item.nom}{" "}
+                                    {item.tailleName
+                                      ? "(" + item.tailleName + ")"
+                                      : ""}
                                     <div
                                       className={`supp ${item.supList.map(
                                         item => {

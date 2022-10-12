@@ -18,7 +18,7 @@ const SEO = ({ title, dsc, img }) => {
   return (
     <Helmet
       htmlAttributes={{ lang: "fr" }}
-      title={title ? `${data.s.title} | ${title}` : data.s.title}
+      title={title ? `${title} | ${data.s.title} ` : data.s.title}
     >
       <meta name="description" content={dsc || data.s.siteDsc.siteDsc} />
       <meta name="image" content={img} />
