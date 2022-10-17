@@ -131,6 +131,7 @@ const Commande = ({ data }) => {
               <></>
             )}
           </table>
+          <button className="btn-pay">Paiement en ligne</button>
         </div>
         <div className="afterCommande">
           {typeof window !== "undefined" ? (
