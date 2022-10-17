@@ -24,8 +24,7 @@ const getData = graphql`
 const Provider = props => {
   const data = useStaticQuery(getData)
   // check if open mode
-  //const magOpen = data.c.ouverture ? OpenClose(data.c.horaire) : false
-  const magOpen = true
+  const magOpen = data.c.ouverture ? OpenClose(data.c.horaire) : false
   const [mode] = useState(magOpen)
   //livraison, emporter, non-defini
   let [service, setService] = useState(0)
